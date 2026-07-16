@@ -405,3 +405,48 @@ h1{
     display:none;
     border:1px solid #bfd1da;
 }
+@media (max-width:768px){
+
+    body{
+        padding:10px;
+    }
+
+    .contenedor{
+        padding:15px;
+    }
+
+    h1{
+        font-size:22px;
+    }
+
+    .grid-datos{
+        grid-template-columns:1fr;
+    }
+
+    .acciones-top{
+        flex-direction:column;
+    }
+
+    .btn,
+    .btn-reset{
+        width:100%;
+    }
+
+    .estado-final{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .tabla-info,
+    .tabla-mediciones,
+    .tabla-baterias,
+    .tabla-pruebas,
+    .tabla-responsable{
+        display:block;
+        overflow-x:auto;
+    }
+
+    .logo{
+        width:90px;
+    }
+}
