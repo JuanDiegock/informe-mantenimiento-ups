@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Informe Técnico de Mantenimiento UPS
+    </title>
+
+    <link rel="stylesheet"
+        href="estilo.css">
+
+</head>
+
+<body>
+
+    <div class="contenedor">
+
+        <div class="header">
+
+            <img
+                src="Infrasol.png"
+                class="logo">
+
+            <h1>
+                INFORME TÉCNICO DE MANTENIMIENTO UPS
+            </h1>
+
+        </div>
+
+        <div class="panel-top">
+
+            <div class="grupo">
+
+                <label>
+                    Unique ID
+                </label>
+
+                <input
+                    type="text"
+                    id="codigoInforme"
+                    readonly>
+
+            </div>
+
+            <div class="grupo">
+
+                <label>
+                    ¿Cuántos equipos desea registrar?
+                </label>
+
+                <select id="cantidadEquipos">
+
+                    <option value="1">
+                        1 Equipo
+                    </option>
+
+                    <option value="2">
+                        2 Equipos
+                    </option>
+
+                    <option value="3">
+                        3 Equipos
+                    </option>
+
+                    <option value="4">
+                        4 Equipos
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="acciones-top">
+                <button
+            id="btnPDF"
+            class="btn">
+
+            Generar PDF
+
+            </button>
+                <button
+                    id="generarEquipos"
+                    class="btn">
+
+                    Generar Equipos
+
+                </button>
+
+                <button
+                    id="resetCounter"
+                    class="btn-reset">
+
+                    Reiniciar N°
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <div id="equiposContainer"></div>
+
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+
+<script src="funcion.js"></script>
+
+</body>
+
+</html>

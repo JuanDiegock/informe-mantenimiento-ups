@@ -1,0 +1,407 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+:root{
+    --azul:#003f73;
+    --azul-medio:#1f5f8f;
+    --azul-oscuro:#17385f;
+    --celeste:#eaf4f8;
+    --borde:#bfd1da;
+    --rojo:#c62828;
+}
+
+body{
+    background:linear-gradient(
+        180deg,
+        #e7e2cd 0%,
+        #f3f1e6 100%
+    );
+
+    padding:28px;
+}
+
+.contenedor{
+    max-width:1180px;
+    margin:auto;
+    background:white;
+    padding:34px;
+    border-radius:8px;
+    box-shadow:
+        0 12px 35px
+        rgba(20,42,66,.14);
+}
+
+.header{
+    text-align:center;
+    margin-bottom:30px;
+    padding-bottom:22px;
+    border-bottom:3px solid var(--azul);
+}
+
+.logo{
+    width:130px;
+    margin-bottom:10px;
+}
+
+h1{
+    color:var(--azul);
+    font-size:30px;
+}
+
+.panel-top{
+    border:1px solid var(--borde);
+    background:var(--celeste);
+    padding:22px;
+    border-radius:8px;
+}
+
+.grupo{
+    margin-bottom:18px;
+}
+
+.grupo label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:bold;
+    color:var(--azul);
+    text-transform:uppercase;
+}
+
+.grupo input,
+.grupo select{
+    width:100%;
+    padding:11px;
+    border:1px solid #8fb2c4;
+    border-radius:5px;
+}
+
+.acciones-top{
+    display:flex;
+    gap:12px;
+}
+
+.btn,
+.btn-reset{
+    border:none;
+    color:white;
+    padding:12px 18px;
+    border-radius:5px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.btn{
+    background:var(--azul-oscuro);
+}
+
+.btn-reset{
+    background:var(--rojo);
+}
+.equipo-card{
+    margin-top:25px;
+    background:white;
+    border:1px solid #bfd1da;
+    border-radius:8px;
+    overflow:hidden;
+}
+
+.equipo-header{
+    background:#003f73;
+    color:white;
+    padding:15px;
+    font-size:18px;
+    font-weight:bold;
+}
+
+.seccion{
+    padding:25px;
+}
+
+.seccion-titulo{
+    color:#003f73;
+    margin-bottom:20px;
+    padding-bottom:10px;
+    border-bottom:2px solid #bfd1da;
+}
+
+.grid-datos{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+}
+
+.campo{
+    display:flex;
+    flex-direction:column;
+}
+
+.campo label{
+    margin-bottom:8px;
+    font-weight:bold;
+    color:#003f73;
+}
+
+.campo input{
+    padding:12px;
+    border:1px solid #8fb2c4;
+    border-radius:5px;
+}
+.alcance-box{
+    margin-top:25px;
+}
+
+.alcance-box textarea{
+    width:100%;
+    min-height:180px;
+    resize:vertical;
+    padding:15px;
+    border:1px solid #8fb2c4;
+    border-radius:5px;
+    font-size:14px;
+    line-height:1.6;
+}
+.tabla-info{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+}
+
+.tabla-info th{
+    background:#003f73;
+    color:white;
+    padding:12px;
+    border:1px solid #bfd1da;
+    text-align:center;
+}
+
+.tabla-info td{
+    border:1px solid #bfd1da;
+    padding:0;
+}
+
+.tabla-info input{
+    width:100%;
+    border:none;
+    padding:12px;
+    outline:none;
+}
+.inspeccion-box{
+    margin-top:25px;
+}
+
+.inspeccion-box textarea{
+    width:100%;
+    min-height:220px;
+    resize:vertical;
+    padding:15px;
+    border:1px solid #8fb2c4;
+    border-radius:5px;
+    font-size:14px;
+    line-height:1.6;
+}
+.actividades-box{
+    margin-top:25px;
+}
+
+.actividades-box textarea{
+    width:100%;
+    min-height:250px;
+    resize:vertical;
+    padding:15px;
+    border:1px solid #8fb2c4;
+    border-radius:5px;
+    font-size:14px;
+    line-height:1.6;
+}
+.mediciones-box{
+    margin-top:25px;
+}
+
+.tabla-mediciones{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+
+.tabla-mediciones th{
+    background:#003f73;
+    color:white;
+    border:1px solid #bfd1da;
+    padding:12px;
+    text-align:center;
+}
+
+.tabla-mediciones td{
+    border:1px solid #bfd1da;
+    padding:0;
+}
+
+.tabla-mediciones input{
+    width:100%;
+    border:none;
+    padding:12px;
+    text-align:center;
+}
+.tabla-mediciones strong{
+    color:#003f73;
+}
+
+.tabla-mediciones td:first-child{
+    font-weight:500;
+}
+.baterias-box{
+    margin-top:30px;
+}
+
+.tabla-baterias{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+
+.tabla-baterias th{
+    background:#003f73;
+    color:white;
+    border:1px solid #bfd1da;
+    padding:12px;
+    text-align:center;
+}
+
+.tabla-baterias td{
+    border:1px solid #bfd1da;
+    padding:8px;
+}
+
+.tabla-baterias input{
+    width:100%;
+    border:none;
+    padding:10px;
+    outline:none;
+}
+.tabla-pruebas{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+
+.tabla-pruebas th{
+    background:#003f73;
+    color:white;
+    padding:12px;
+    border:1px solid #bfd1da;
+    text-align:left;
+}
+
+.tabla-pruebas td{
+    border:1px solid #bfd1da;
+    padding:10px;
+}
+
+.tabla-pruebas select{
+    width:100%;
+    padding:8px;
+    border:none;
+    outline:none;
+}
+.campo-conclusiones{
+    margin-top:15px;
+}
+
+.campo-conclusiones textarea{
+    width:100%;
+    min-height:180px;
+    padding:12px;
+    border:1px solid #bfd1da;
+    border-radius:4px;
+    resize:vertical;
+    font-family:inherit;
+}
+.campo-recomendaciones{
+    margin-top:15px;
+}
+
+.campo-recomendaciones textarea{
+    width:100%;
+    min-height:180px;
+    padding:12px;
+    border:1px solid #bfd1da;
+    border-radius:4px;
+    resize:vertical;
+    font-family:inherit;
+}
+.estado-final{
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    gap:20px;
+    margin-top:20px;
+    padding:20px;
+    border:1px solid #bfd1da;
+}
+
+.estado-opcion{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-weight:600;
+}
+
+.estado-opcion input[type="radio"]{
+    width:18px;
+    height:18px;
+}   
+.tabla-responsable{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+}
+
+.tabla-responsable td{
+    border:1px solid #bfd1da;
+    padding:15px;
+    text-align:center;
+}
+
+.titulo-responsable{
+    font-weight:bold;
+    width:25%;
+}
+
+.tabla-responsable input{
+    width:90%;
+    padding:8px;
+    border:1px solid #bfd1da;
+    border-radius:4px;
+}
+.reporte-fotos{
+    margin-top:20px;
+}
+
+.foto-item{
+    border:1px solid #bfd1da;
+    padding:15px;
+    margin-bottom:15px;
+    border-radius:6px;
+}
+
+.foto-titulo{
+    font-weight:bold;
+    color:#003f73;
+    margin-bottom:10px;
+}
+
+.foto-item input[type="file"]{
+    width:100%;
+}
+
+.preview-imagen{
+    margin-top:10px;
+    max-width:300px;
+    max-height:220px;
+    display:none;
+    border:1px solid #bfd1da;
+}
