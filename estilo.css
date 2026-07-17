@@ -482,6 +482,72 @@ h1{
     .seccion{
         padding:15px;
     }
+    /* EQUIPO INTERVENIDO EN CELULAR */
+
+.tabla-info,
+.tabla-info thead,
+.tabla-info tbody,
+.tabla-info tr,
+.tabla-info th,
+.tabla-info td{
+    display:block;
+}
+
+.tabla-info thead{
+    display:none;
+}
+
+.tabla-info tr{
+    background:#fff;
+    border:1px solid #ddd;
+    border-radius:10px;
+    padding:12px;
+    margin-bottom:15px;
+}
+
+.tabla-info td{
+    border:none;
+    padding:8px 0;
+}
+
+.tabla-info td:nth-child(1)::before{
+    content:"Equipo";
+    font-weight:bold;
+    display:block;
+    margin-bottom:4px;
+}
+
+.tabla-info td:nth-child(2)::before{
+    content:"Marca";
+    font-weight:bold;
+    display:block;
+    margin-bottom:4px;
+}
+
+.tabla-info td:nth-child(3)::before{
+    content:"Modelo";
+    font-weight:bold;
+    display:block;
+    margin-bottom:4px;
+}
+
+.tabla-info td:nth-child(4)::before{
+    content:"Capacidad";
+    font-weight:bold;
+    display:block;
+    margin-bottom:4px;
+}
+
+.tabla-info td:nth-child(5)::before{
+    content:"Serie";
+    font-weight:bold;
+    display:block;
+    margin-bottom:4px;
+}
+
+.tabla-info input{
+    width:100%;
+}
 }
 
  
