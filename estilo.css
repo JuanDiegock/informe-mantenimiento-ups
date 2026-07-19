@@ -405,6 +405,45 @@ h1{
     display:none;
     border:1px solid #bfd1da;
 }
+/* ===========================
+   CHECKLIST DE ACTIVIDADES
+=========================== */
+
+.checklist-actividades{
+    margin-top:20px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.checklist-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:12px 15px;
+    background:#f8fbfd;
+    border:1px solid #bfd1da;
+    border-radius:8px;
+    transition:0.2s;
+}
+
+.checklist-item:hover{
+    background:#edf7fb;
+}
+
+.checklist-item input[type="checkbox"]{
+    width:20px;
+    height:20px;
+    cursor:pointer;
+}
+
+.checklist-item label{
+    cursor:pointer;
+    font-size:15px;
+    color:#003f73;
+    flex:1;
+}
+
 @media (max-width: 768px){
 
     body{
@@ -548,6 +587,18 @@ h1{
 .tabla-info input{
     width:100%;
 }
+
+/* CHECKLIST EN CELULAR */
+
+.checklist-item{
+    padding:10px;
+    align-items:flex-start;
+}
+
+.checklist-item label{
+    font-size:14px;
+}
+
 }
 
  
