@@ -207,26 +207,79 @@ Los equipos detallados fueron instalados en el cuarto de tableros, en formato to
         III. ACTIVIDADES REALIZADAS
     </h2>
 
-    <textarea>
-Durante el servicio de instalación y conexionado del sistema UPS/SAI y banco externo de baterias, se realizaron las siguientes actividades:  
+    <p style="margin-bottom:15px;">
+        Durante el servicio de instalación y conexionado del sistema UPS/SAI y banco externo de baterías, se realizaron las siguientes actividades:
+    </p>
+    <div class="checklist-actividades">
 
-- Inspección visual del sistema UPS.
+    <div class="checklist-item">
+        <input type="checkbox" id="act1">
+        <label for="act1">
+            Inspección visual del sistema UPS.
+        </label>
+    </div>
 
-- Verificación del estado general de conexiones eléctricas.
+    <div class="checklist-item">
+        <input type="checkbox" id="act2">
+        <label for="act2">
+            Verificación del estado general de conexiones eléctricas.
+        </label>
+    </div>
 
-- Limpieza interna y externa del equipo.
+    <div class="checklist-item">
+        <input type="checkbox" id="act3">
+        <label for="act3">
+            Limpieza interna y externa del equipo.
+        </label>
+    </div>
 
-- Ajuste y reapriete de terminales.
+    <div class="checklist-item">
+        <input type="checkbox" id="act4">
+        <label for="act4">
+            Ajuste y reapriete de terminales.
+        </label>
+    </div>
 
-- Verificación del sistema de ventilación.
+    <div class="checklist-item">
+        <input type="checkbox" id="act5">
+        <label for="act5">
+            Verificación del sistema de ventilación.
+        </label>
+    </div>
 
-- Comprobación de alarmas y eventos registrados.
+    <div class="checklist-item">
+        <input type="checkbox" id="act6">
+        <label for="act6">
+            Comprobación de alarmas y eventos registrados.
+        </label>
+    </div>
 
-- Verificación del estado del banco de baterías.
+    <div class="checklist-item">
+        <input type="checkbox" id="act7">
+        <label for="act7">
+            Verificación del estado del banco de baterías.
+        </label>
+    </div>
 
-- Pruebas funcionales del sistema UPS.
+    <div class="checklist-item">
+        <input type="checkbox" id="act8">
+        <label for="act8">
+            Pruebas funcionales del sistema UPS.
+        </label>
+    </div>
 
-    </textarea>
+</div>
+
+    <div style="margin-top:20px;">
+
+        <label><strong>Observaciones adicionales</strong></label>
+
+        <textarea
+            placeholder="Ingrese observaciones adicionales..."
+            rows="5">
+        </textarea>
+
+    </div>
 
 </div>
 
@@ -1078,20 +1131,42 @@ pdf.rect(
     180,
     alturaInspeccion
 );
-const actividades =
-document.querySelector(
-    ".actividades-box textarea"
-)?.value || "";
+
+const actividades = [];
+
+document.querySelectorAll(".checklist-item").forEach(item => {
+
+    const check = item.querySelector("input[type='checkbox']");
+    const texto = item.querySelector("label").textContent.trim();
+
+    if(check.checked){
+        actividades.push("• " + texto);
+    }
+
+});
+
+const observaciones =
+document.querySelector(".actividades-box textarea")?.value || "";
+
+if(observaciones.trim() !== ""){
+    actividades.push("");
+    actividades.push("Observaciones:");
+    actividades.push(observaciones);
+}
 
 pdf.addPage();
 
 let yActividades = 15;
 
-const textoActividades =
-pdf.splitTextToSize(
-    actividades,
-    160
-);
+const textoActividades = [];
+
+actividades.forEach(linea => {
+
+    const partes = pdf.splitTextToSize(linea,160);
+
+    textoActividades.push(...partes);
+
+});
 
 const alturaActividades =
 (textoActividades.length * 6) + 15;
