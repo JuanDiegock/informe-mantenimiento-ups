@@ -180,15 +180,11 @@ El presente informe tiene como alcance describir las actividades realizadas dura
                         </tr>
 
                     </tbody>
-
-                </table>
-
-            </div>
+            </table>
 
         </div>
 
-    </div>
-    <div class="inspeccion-box">
+<div class="inspeccion-box">
 
     <h2 class="seccion-titulo">
         II. INSPECCIÓN PRELIMINAR
@@ -213,57 +209,57 @@ Los equipos detallados fueron instalados en el cuarto de tableros, en formato to
     <div class="checklist-actividades">
 
     <div class="checklist-item">
-        <input type="checkbox" id="act1">
-        <label for="act1">
+    <input type="checkbox" id="act${numero}_1">
+    <label for="act${numero}_1">
             Inspección visual del sistema UPS.
         </label>
     </div>
 
     <div class="checklist-item">
-        <input type="checkbox" id="act2">
-        <label for="act2">
+    <input type="checkbox" id="act${numero}_2">
+    <label for="act${numero}_2">
             Verificación del estado general de conexiones eléctricas.
         </label>
     </div>
 
     <div class="checklist-item">
-        <input type="checkbox" id="act3">
-        <label for="act3">
+    <input type="checkbox" id="act${numero}_3">
+    <label for="act${numero}_3">
             Limpieza interna y externa del equipo.
         </label>
     </div>
 
     <div class="checklist-item">
-        <input type="checkbox" id="act4">
-        <label for="act4">
+    <input type="checkbox" id="act${numero}_4">
+    <label for="act${numero}_4">
             Ajuste y reapriete de terminales.
         </label>
     </div>
 
     <div class="checklist-item">
-        <input type="checkbox" id="act5">
-        <label for="act5">
+    <input type="checkbox" id="act${numero}_5">
+    <label for="act${numero}_5">
             Verificación del sistema de ventilación.
         </label>
     </div>
 
     <div class="checklist-item">
-        <input type="checkbox" id="act6">
-        <label for="act6">
+    <input type="checkbox" id="act${numero}_6">
+    <label for="act${numero}_6">
             Comprobación de alarmas y eventos registrados.
         </label>
     </div>
 
     <div class="checklist-item">
-        <input type="checkbox" id="act7">
-        <label for="act7">
+    <input type="checkbox" id="act${numero}_7">
+    <label for="act${numero}_7">
             Verificación del estado del banco de baterías.
         </label>
     </div>
 
     <div class="checklist-item">
-        <input type="checkbox" id="act8">
-        <label for="act8">
+    <input type="checkbox" id="act${numero}_8">
+    <label for="act${numero}_8">
             Pruebas funcionales del sistema UPS.
         </label>
     </div>
@@ -544,17 +540,17 @@ Con el fin de verificar la operatividad del sistema de respaldo, se ejecutaron l
 <div class="estado-final">
 
     <label class="estado-opcion">
-        <input type="radio" name="estadoEquipo" value="Operativo">
+        <input type="radio" name="estadoEquipo${numero}" value="Operativo">
         OPERATIVO
     </label>
 
     <label class="estado-opcion">
-        <input type="radio" name="estadoEquipo" value="Operativo con observación">
+        <input type="radio" name="estadoEquipo${numero}" value="Operativo con observación">
         OPERATIVO CON OBSERVACIÓN
     </label>
 
     <label class="estado-opcion">
-        <input type="radio" name="estadoEquipo" value="Inoperativo">
+        <input type="radio" name="estadoEquipo${numero}" value="Inoperativo">
         INOPERATIVO
     </label>
 
@@ -763,23 +759,7 @@ async function generarPDF(){
     const equipos =
 document.querySelectorAll(".equipo-card");
 
-    const cliente =
-    document.querySelector(".grid-datos .campo:nth-child(1) input")?.value || "";
-
-    const ruc =
-    document.querySelector(".grid-datos .campo:nth-child(2) input")?.value || "";
-
-    const ubicacion =
-    document.querySelector(".grid-datos .campo:nth-child(3) input")?.value || "";
-
-    const equipo =
-    document.querySelector(".grid-datos .campo:nth-child(4) input")?.value || "";
-
-    const servicio =
-    document.querySelector(".grid-datos .campo:nth-child(5) input")?.value || "";
-
-    const fecha =
-    document.querySelector(".grid-datos .campo:nth-child(6) input")?.value || "";
+    
 
     const logo = new Image();
 
@@ -791,8 +771,25 @@ logo.onload = async function(){
         const codigoEquipo =
 `ITMU-${String(contador + indice).padStart(4,"0")}`;
 
-        const equipoActual =
-        equipos[indice];
+        const equipoActual = equipos[indice];
+
+const cliente =
+equipoActual.querySelector(".grid-datos .campo:nth-child(1) input")?.value || "";
+
+const ruc =
+equipoActual.querySelector(".grid-datos .campo:nth-child(2) input")?.value || "";
+
+const ubicacion =
+equipoActual.querySelector(".grid-datos .campo:nth-child(3) input")?.value || "";
+
+const equipo =
+equipoActual.querySelector(".grid-datos .campo:nth-child(4) input")?.value || "";
+
+const servicio =
+equipoActual.querySelector(".grid-datos .campo:nth-child(5) input")?.value || "";
+
+const fecha =
+equipoActual.querySelector(".grid-datos .campo:nth-child(6) input")?.value || "";
 
         const pdf =
         new jsPDF("p","mm","a4");
@@ -843,27 +840,27 @@ pdf.line(
     35
 );
 const eq =
-document.querySelector(
+equipoActual.querySelector(
 ".tabla-info tbody tr td:nth-child(1) input"
 )?.value || "";
 
 const marca =
-document.querySelector(
+equipoActual.querySelector(
 ".tabla-info tbody tr td:nth-child(2) input"
 )?.value || "";
 
 const modelo =
-document.querySelector(
+equipoActual.querySelector(
 ".tabla-info tbody tr td:nth-child(3) input"
 )?.value || "";
 
 const capacidad =
-document.querySelector(
+equipoActual.querySelector(
 ".tabla-info tbody tr td:nth-child(4) input"
 )?.value || "";
 
 const serie =
-document.querySelector(
+equipoActual.querySelector(
 ".tabla-info tbody tr td:nth-child(5) input"
 )?.value || "";
 pdf.autoTable({
@@ -925,7 +922,7 @@ pdf.autoTable({
 
 });
 const alcance =
-document.querySelector(
+equipoActual.querySelector(
     ".alcance-box textarea"
 )?.value || "";
 
@@ -1055,8 +1052,8 @@ pdf.rect(
     alturaCaja
 );
 const inspeccion =
-document.querySelector(
-    ".inspeccion-box textarea"
+equipoActual.querySelector(
+".inspeccion-box textarea"
 )?.value || "";
 
 let yInspeccion =
@@ -1132,9 +1129,10 @@ pdf.rect(
     alturaInspeccion
 );
 
+
 const actividades = [];
 
-document.querySelectorAll(".checklist-item").forEach(item => {
+equipoActual.querySelectorAll(".checklist-item").forEach(item => {
 
     const check = item.querySelector("input[type='checkbox']");
     const texto = item.querySelector("label").textContent.trim();
@@ -1146,7 +1144,7 @@ document.querySelectorAll(".checklist-item").forEach(item => {
 });
 
 const observaciones =
-document.querySelector(".actividades-box textarea")?.value || "";
+equipoActual.querySelector(".actividades-box textarea")?.value || "";
 
 if(observaciones.trim() !== ""){
     actividades.push("");
@@ -1302,6 +1300,45 @@ pdf.text(
     28,
     yMediciones + 45
 );
+const filasMediciones =
+equipoActual.querySelectorAll(
+".tabla-mediciones tr"
+);
+console.log(filasMediciones);
+console.log("Cantidad:", filasMediciones.length);
+
+// Tensión de entrada
+const teRS = filasMediciones[2].querySelectorAll("input")[0].value;
+const teST = filasMediciones[2].querySelectorAll("input")[1].value;
+const teTR = filasMediciones[2].querySelectorAll("input")[2].value;
+
+// Tensión bypass
+const tbRS = filasMediciones[3].querySelectorAll("input")[0].value;
+const tbST = filasMediciones[3].querySelectorAll("input")[1].value;
+const tbTR = filasMediciones[3].querySelectorAll("input")[2].value;
+
+// Tensión salida
+const tsRS = filasMediciones[4].querySelectorAll("input")[0].value;
+const tsST = filasMediciones[4].querySelectorAll("input")[1].value;
+const tsTR = filasMediciones[4].querySelectorAll("input")[2].value;
+
+// Corriente entrada
+const ceR = filasMediciones[6].querySelectorAll("input")[0].value;
+const ceS = filasMediciones[6].querySelectorAll("input")[1].value;
+const ceT = filasMediciones[6].querySelectorAll("input")[2].value;
+
+// Corriente salida
+const csR = filasMediciones[7].querySelectorAll("input")[0].value;
+const csS = filasMediciones[7].querySelectorAll("input")[1].value;
+const csT = filasMediciones[7].querySelectorAll("input")[2].value;
+
+// Frecuencia
+const frecuencia =
+filasMediciones[8].querySelector("input").value;
+
+// Temperatura
+const temperatura =
+filasMediciones[9].querySelector("input").value;
 pdf.autoTable({
 
     startY: yMediciones + 55,
@@ -1346,25 +1383,58 @@ pdf.autoTable({
     }
 
 },
-    body:[
+body:[
 
-    ["Parámetros de tensión","R-S","S-T","T-R"],
+["Parámetros de tensión","R-S","S-T","T-R"],
 
-    ["Tensión de entrada","","",""],
-    ["Tensión de bypass","","",""],
-    ["Tensión de salida","","",""],
+["Tensión de entrada",teRS,teST,teTR],
 
-    ["Parámetros de carga","R","S","T"],
+["Tensión de bypass",tbRS,tbST,tbTR],
 
-    ["Corriente de entrada","","",""],
-    ["Corriente de salida","","",""],
+["Tensión de salida",tsRS,tsST,tsTR],
 
-    ["Frecuencia","","",""],
-    ["Temperatura ambiente","","",""]
+["Parámetros de carga","R","S","T"],
+
+["Corriente de entrada",ceR,ceS,ceT],
+
+["Corriente de salida",csR,csS,csT],
+
+["Frecuencia",frecuencia,"",""],
+
+["Temperatura ambiente",temperatura,"",""]
 
 ]
 
 });
+const filasBanco =
+equipoActual.querySelectorAll(".tabla-baterias tr");
+
+const modeloBat =
+filasBanco[1].querySelector("input").value;
+
+const capacidadBat =
+filasBanco[2].querySelector("input").value;
+
+const cantidadBat =
+filasBanco[3].querySelector("input").value;
+
+const configuracionBat =
+filasBanco[4].querySelector("input").value;
+
+const tensionNominalBat =
+filasBanco[5].querySelector("input").value;
+
+const tensionFlotacionBat =
+filasBanco[6].querySelector("input").value;
+
+const tensionDescargaBat =
+filasBanco[7].querySelector("input").value;
+
+const autonomiaBat =
+filasBanco[8].querySelector("input").value;
+
+const anioBat =
+filasBanco[9].querySelector("input").value;
 let yBanco =
 pdf.lastAutoTable.finalY + 15;
 
@@ -1411,15 +1481,15 @@ head:[[
 
 body:[
 
-    ["Modelo",""],
-    ["Capacidad",""],
-    ["Cantidad",""],
-    ["Configuración",""],
-    ["Tensión nominal",""],
-    ["Tensión de flotación",""],
-    ["Tensión de descarga",""],
-    ["Autonomía estimada",""],
-    ["Año de fabricación",""]
+    ["Modelo", modeloBat],
+    ["Capacidad", capacidadBat],
+    ["Cantidad", cantidadBat],
+    ["Configuración", configuracionBat],
+    ["Tensión nominal", tensionNominalBat],
+    ["Tensión de flotación", tensionFlotacionBat],
+    ["Tensión de descarga", tensionDescargaBat],
+    ["Autonomía estimada", autonomiaBat],
+    ["Año de fabricación", anioBat]
 
 ],
 
@@ -1492,7 +1562,7 @@ pdf.text(
     { maxWidth: 160 }
 );
 const resultadosPruebas =
-document.querySelectorAll(
+equipoActual.querySelectorAll(
     ".tabla-pruebas select"
 );
 pdf.autoTable({
@@ -1574,8 +1644,8 @@ pdf.rect(
 );
 
 const conclusiones =
-document.querySelector(
-    ".campo-conclusiones textarea"
+equipoActual.querySelector(
+".campo-conclusiones textarea"
 )?.value || "";
 
 let yConclusiones =
@@ -1647,7 +1717,7 @@ pdf.rect(
 pdf.addPage();
 
 const recomendaciones =
-document.querySelector(
+equipoActual.querySelector(
     ".campo-recomendaciones textarea"
 )?.value || "";
 
@@ -1716,22 +1786,21 @@ pdf.rect(
     alturaRecomendaciones
 );
 const estadoSeleccionado =
-document.querySelector(
-    'input[name="estadoEquipo"]:checked'
+equipoActual.querySelector(
+'input[type="radio"]:checked'
 )?.value || "";
-
 const responsableNombre =
-document.querySelector(
+equipoActual.querySelector(
     '.tabla-responsable input[type="text"]'
 )?.value || "";
 
 const responsableCorreo =
-document.querySelector(
+equipoActual.querySelector(
     '.tabla-responsable input[type="email"]'
 )?.value || "";
 
 const responsableCargo =
-document.querySelectorAll(
+equipoActual.querySelectorAll(
     '.tabla-responsable input[type="text"]'
 )[1]?.value || "";
 
@@ -1836,8 +1905,8 @@ pdf.text(
     15
 );
 const fotos =
-document.querySelectorAll(
-    '.reporteFotografico input[type="file"]'
+equipoActual.querySelectorAll(
+'.reporteFotografico input[type="file"]'
 );
 let x = 15;
 let yFoto = 25;
