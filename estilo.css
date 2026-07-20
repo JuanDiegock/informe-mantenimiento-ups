@@ -145,10 +145,32 @@ h1{
     color:#003f73;
 }
 
-.campo input{
+.campo input,
+.campo select{
+    width:100%;
+    height:46px;
     padding:12px;
     border:1px solid #8fb2c4;
     border-radius:5px;
+    background:#fff;
+    font-size:15px;
+    outline:none;
+    transition:0.2s;
+}
+.campo input:focus,
+.campo select:focus{
+    border-color:#003f73;
+    box-shadow:0 0 5px rgba(0,63,115,.25);
+}
+.ruc-input{
+    background:#eef5fb !important;
+    color:#003f73;
+    font-weight:bold;
+    cursor:not-allowed;
+}
+
+.campo select{
+    cursor:pointer;
 }
 .alcance-box{
     margin-top:25px;
