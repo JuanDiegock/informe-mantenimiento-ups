@@ -64,7 +64,264 @@ console.log("Cantidad:", cantidad);
         crearDatosGenerales(i);
 
     }
-generarReporteFotografico();
+function configurarClientes(){
+
+    const equipos = document.querySelectorAll(".equipo-card");
+
+    equipos.forEach(equipo=>{
+
+        const cliente =
+        equipo.querySelector(".cliente-select");
+
+        const local =
+        equipo.querySelector(".local-select");
+
+        const ruc =
+        equipo.querySelector(".ruc-input");
+
+        cliente.addEventListener("change",()=>{
+            switch(cliente.value){
+                case "cliente1":
+
+    ruc.value = "20608300393";
+
+    local.innerHTML = `
+        <option value="">Seleccione un local</option>
+
+        <option>Jockey Plaza - PVH</option>
+        <option>Higuereta - PVH</option>
+        <option>Brasil - PVH</option>
+        <option>Cortijo - PVH</option>
+        <option>Callao - PVH</option>
+        <option>Ate - PVH</option>
+        <option>Bolichera - PVH</option>
+        <option>Risso - PVH</option>
+        <option>Los Olivos - PVH</option>
+        <option>Comas - PVH</option>
+        <option>Trujillo - PVH</option>
+        <option>Chiclayo - PVH</option>
+        <option>Arequipa - PVH</option>
+        <option>Ceres - PVH</option>
+        <option>Pro - PVH</option>
+        <option>Huancayo - PVH</option>
+        <option>Izaguirre - PVH</option>
+        <option>Alfonso Ugarte - PVH</option>
+        <option>Universitaria - PVH</option>
+        <option>Puente Piedra - PVH</option>
+        <option>SJ Lurigancho - PVH</option>
+        <option>Ica - PVH</option>
+        <option>El Chacarero - PVH</option>
+        <option>Santa Clara - PVH</option>
+        <option>Colonial - PVH</option>
+        <option>Centro Civico - PVH</option>
+        <option>Chimbote - PVH</option>
+        <option>Chosica - PVH</option>
+        <option>Chincha - PVH</option>
+        <option>Piura - PVH</option>
+        <option>Huacho - PVH</option>
+        <option>Nvo Chimbote - PVH</option>
+        <option>Tacna - PVH</option>
+        <option>Juliaca - PVH</option>
+        <option>Guardia Civil - PVH</option>
+        <option>LurIn - PVH</option>
+        <option>Talara - PVH</option>
+        <option>Puno - PVH</option>
+        <option>San Borja - PVH</option>
+        <option>Acho - PVH</option>
+        <option>Huanuco - PVO</option>
+        <option>Rimac Alcazar - PVH</option>
+        <option>Huaral - PVH</option>
+        <option>Sullana - PVH</option>
+        <option>San Isidro - PVH</option>
+        <option>Salaverry - PVH</option>
+        <option>Paita - PVH</option>
+        <option>Cusco Mall - PVH</option>
+        <option>Barranca - PVH</option>
+        <option>Cajamarca - PVH</option>
+        <option>Brena - PVH</option>
+        <option>Ventanilla - PVH</option>
+        <option>Valle Hermoso - PVH</option>
+        <option>La Molina - PVH</option>
+        <option>Pucallpa - PVO</option>
+        <option>Grifo Mexico - PVH</option>
+        <option>Pisco - PVH</option>
+        <option>Jaen - PVO</option>
+        <option>Moquegua - PVH</option>
+        <option>Talara Municipalidad - PVH</option>
+        <option>El Agustino - PVH</option>
+        <option>Armado de canastas</option>
+        <option>La Curva - PVH</option>
+        <option>Ves Placita - PVH</option>
+        <option>Sucre - PVH</option>
+        <option>Tarapoto - PVO</option>
+        <option>Ilo - PVH</option>
+        <option>Tumbes - PVH</option>
+        <option>Puruchuco - PVH</option>
+        <option>Chiclayo Aventura - PVH</option>
+        <option>Miraflores - PVH</option>
+        <option>Caminos del Inca - PVS</option>
+        <option>Art Express - PVS</option>
+        <option>El Ejercito - PVS</option>
+        <option>Salamanca - PVS</option>
+        <option>Ayacucho - PVS</option>
+        <option>Corpac - PVS</option>
+        <option>Dasso - PVS</option>
+        <option>San Jorge - PVS</option>
+        <option>Alameda Sur - PVS</option>
+        <option>El Tambo Huancayo - PVS</option>
+        <option>Villa el Salvador - PVS</option>
+        <option>Multiplaza - PVS</option>
+        <option>Trujillo Mansiche - PVS</option>
+        <option>Chorrillos Iglesias - PVS</option>
+        <option>Magdalena - PVS</option>
+        <option>Cine Rimac - PVS</option>
+        <option>Grifo Kio - PVS</option>
+        <option>La Paz - PVS</option>
+        <option>Villa Marina - PVS</option>
+        <option>Proceres - PVS</option>
+        <option>La Victoria - PVS</option>
+        <option>La Perla - PVS</option>
+        <option>Trujillo Valcarcel - PVS</option>
+        <option>Chaclacayo - PVS</option>
+        <option>Bolognesi - PVE</option>
+        <option>Santa Cruz - PVE</option>
+        <option>Supermercados SKA - PVE</option>
+        <option>Centro Trujillo - PVE</option>
+        <option>Jiron de la Union - PVE</option>
+        <option>San Miguel - PVH</option>
+        <option>Cusco Wanchaq - PVH</option>
+        <option>Mercaderes - PVS</option>
+        <option>Primavera - PVH</option>
+        <option>Aventura SJL - PVH</option>
+        <option>Pezet - VIV</option>
+        <option>Benavides - VIV</option>
+        <option>Dos de Mayo - VIV</option>
+        <option>Monterrico - VIV</option>
+        <option>Javier Prado - VIV</option>
+        <option>Libertadores - VIV</option>
+        <option>Asia - VIV</option>
+        <option>Destinos del Sabor - VIV</option>
+        <option>Pardo - VIV</option>
+        <option>Alm. Santa Rosa</option>
+        <option>Oficinas Morelli</option>
+    `;
+
+    break;
+
+    case "cliente2":
+
+    ruc.value = "20492092313";
+
+    local.innerHTML = `
+        <option value="">Seleccione un local</option>
+
+        <option>Zarate 2 - MK</option>
+        <option>Cusco - MK</option>
+        <option>Piura 2 - MK</option>
+        <option>Arequipa 2 - MK</option>
+        <option>Sullana - MK</option>
+        <option>Independencia - MK</option>
+        <option>Callao - MK</option>
+        <option>Santa Anita - MK</option>
+        <option>Surco - MK</option>
+        <option>Arequipa - MK</option>
+        <option>Chiclayo - MK</option>
+        <option>Zarate - MK</option>
+        <option>Trujillo - MK</option>
+        <option>Piura - MK</option>
+        <option>Comas - MK</option>
+        <option>Villa El Salvador - MK</option>
+        <option>Huancayo - MK</option>
+        <option>Chincha - MK</option>
+        <option>Ica - MK</option>
+        <option>Huacho - MK</option>
+        <option>Trujillo 2 - MK</option>
+        <option>Cercado - MK</option>
+        <option>Chorrillos - MK</option>
+        <option>Chimbote - MK</option>
+        <option>Cañete - MK</option>
+        <option>SMP - MK</option>
+        <option>SJM - MK</option>
+        <option>HO (Oficina Central) - MK</option>
+        <option>Cusco - MK (Centro Comercial)</option>
+    `;
+
+    break;
+    case "cliente3":
+
+    ruc.value = "20607281921";
+
+    local.innerHTML = `
+        <option value="">Seleccione un local</option>
+
+        <option>Punta Negra</option>
+        <option>VES Aldea</option>
+        <option>Arequipa</option>
+        <option>Arequipa 2</option>
+        <option>Callao LATAM</option>
+        <option>Chiclayo</option>
+        <option>Chiclayo 2</option>
+        <option>Huachipa</option>
+        <option>Huachipa Merkao</option>
+        <option>Huancayo</option>
+        <option>Piura Aldeas</option>
+        <option>Punta Hermosa</option>
+        <option>Trujillo Ventanilla</option>
+        <option>Ventanilla</option>
+    `;
+
+    break;
+    case "cliente4":
+
+    ruc.value = "20493020618";
+
+    local.innerHTML = `
+        <option value="">Seleccione un local</option>
+
+        <option>Arequipa - OE</option>
+        <option>Cajamarca - OE</option>
+        <option>Cusco - OE</option>
+        <option>Huanuco - OE</option>
+        <option>Juliaca - OE</option>
+        <option>Lima Norte - OE</option>
+        <option>Megaplaza - OE</option>
+        <option>Miraflores - OE</option>
+        <option>Pucallpa - OE</option>
+        <option>Salaverry - OE</option>
+        <option>San Borja - OE</option>
+        <option>SJL - OE</option>
+        <option>Barranca - OE</option>
+        <option>Centro Civico - OE</option>
+        <option>Huancayo - OE</option>
+        <option>Jiron - OE</option>
+        <option>Jockey - OE</option>
+        <option>Mall del Sur - OE</option>
+        <option>Piura - OE</option>
+        <option>Primavera - OE</option>
+        <option>Puruchuco - OE</option>
+        <option>Sfera Puruchuco - OE</option>
+        <option>Trujillo - OE</option>
+    `;
+
+    break;
+
+
+    default:
+
+        ruc.value = "";
+
+        local.innerHTML = `
+            <option value="">
+                Seleccione un cliente primero
+            </option>
+        `;
+}
+        });
+
+    });
+
+}
+configurarClientes();
 });
 
 function crearDatosGenerales(numero){
@@ -85,35 +342,123 @@ function crearDatosGenerales(numero){
 
             <div class="grid-datos">
 
-                <div class="campo">
-                    <label>Cliente</label>
-                    <input type="text">
-                </div>
+              <div class="campo">
 
-                <div class="campo">
-                    <label>RUC</label>
-                    <input type="text">
-                </div>
+    <label>Cliente</label>
 
-                <div class="campo">
-                    <label>Ubicación</label>
-                    <input type="text">
-                </div>
+    <select class="cliente-select">
 
-                <div class="campo">
-                    <label>Equipo</label>
-                    <input type="text">
-                </div>
+        <option value="">
+            Seleccione un cliente
+        </option>
 
-                <div class="campo">
-                    <label>Servicio</label>
-                    <input type="text">
-                </div>
+        <option value="cliente1">
+            COMPAÑÍA FOOD RETAIL
+        </option>
 
-                <div class="campo">
-                    <label>Fecha del Servicio</label>
-                    <input type="date">
-                </div>
+        <option value="cliente2">
+            MAKRO SUPERMAYORISTA
+        </option>
+
+        <option value="cliente3">
+            OSLO
+        </option>
+
+        <option value="cliente4">
+        TIENDAS PERUANAS (OECHSLE)
+        </option>
+    </select>
+
+</div>
+
+               <div class="campo">
+
+    <label>RUC</label>
+
+    <input
+        type="text"
+        class="ruc-input"
+        readonly>
+
+</div>
+
+<div class="campo">
+    <label>Ubicación</label>
+
+    <select class="ubicacion-input">
+
+        <option value="">
+            Seleccione una ubicación
+        </option>
+
+        <option value="Cuarto de Comunicaciones">
+            Cuarto de Comunicaciones
+        </option>
+
+        <option value="Cuarto de Sistemas">
+            Cuarto de Sistemas
+        </option>
+
+    </select>
+</div>
+
+<div class="campo">
+
+    <label>Local</label>
+
+    <select class="local-select">
+
+        <option value="">
+            Seleccione un cliente primero
+        </option>
+
+    </select>
+
+</div>
+
+<div class="campo">
+    <label>Equipo</label>
+    <input
+        type="text"
+        class="equipo-input">
+</div>
+<div class="campo">
+    <label>Equipos Energizados</label>
+
+    <select class="equipos-energizados-input">
+
+        <option value="">
+            Seleccione una opción
+        </option>
+
+        <option value="Cajas">
+            Cajas
+        </option>
+
+        <option value="Servidores/Oficina">
+            Servidores/Oficina
+        </option>
+
+        <option value="Cámaras Videovigilancia">
+            Cámaras Videovigilancia
+        </option>
+
+    </select>
+</div>
+
+<div class="campo">
+    <label>Servicio</label>
+    <input
+        type="text"
+        class="servicio-input">
+</div>
+
+<div class="campo">
+    <label>Fecha del Servicio</label>
+    <input
+        type="date"
+        class="fecha-input">
+</div>
 
             </div>
 
@@ -774,22 +1119,27 @@ logo.onload = async function(){
         const equipoActual = equipos[indice];
 
 const cliente =
-equipoActual.querySelector(".grid-datos .campo:nth-child(1) input")?.value || "";
-
+equipoActual.querySelector(".cliente-select")?.selectedOptions[0].text || "";
 const ruc =
-equipoActual.querySelector(".grid-datos .campo:nth-child(2) input")?.value || "";
+equipoActual.querySelector(".ruc-input")?.value || "";
 
 const ubicacion =
-equipoActual.querySelector(".grid-datos .campo:nth-child(3) input")?.value || "";
+equipoActual.querySelector(".ubicacion-input")?.value || "";
+
+const local =
+equipoActual.querySelector(".local-select")?.value || "";
 
 const equipo =
-equipoActual.querySelector(".grid-datos .campo:nth-child(4) input")?.value || "";
+equipoActual.querySelector(".equipo-input")?.value || "";
+
+const equiposEnergizados =
+equipoActual.querySelector(".equipos-energizados-input")?.value || "";
 
 const servicio =
-equipoActual.querySelector(".grid-datos .campo:nth-child(5) input")?.value || "";
+equipoActual.querySelector(".servicio-input")?.value || "";
 
 const fecha =
-equipoActual.querySelector(".grid-datos .campo:nth-child(6) input")?.value || "";
+equipoActual.querySelector(".fecha-input")?.value || "";
 
         const pdf =
         new jsPDF("p","mm","a4");
@@ -863,6 +1213,7 @@ const serie =
 equipoActual.querySelector(
 ".tabla-info tbody tr td:nth-child(5) input"
 )?.value || "";
+
 pdf.autoTable({
 
     startY: 45,
@@ -878,48 +1229,53 @@ pdf.autoTable({
 
     columnStyles:{
         0:{
-            cellWidth:25,
+            cellWidth:30,
             fontStyle:"bold",
             fillColor:[220,220,220]
         },
         1:{
-            cellWidth:65
+            cellWidth:60
         },
         2:{
-            cellWidth:25,
+            cellWidth:30,
             fontStyle:"bold",
             fillColor:[220,220,220]
         },
         3:{
-            cellWidth:65
+            cellWidth:60
         }
     },
-
     body:[
 
-        [
-            "CLIENTE:",
-            cliente,
-            "EQUIPO:",
-            equipo
-        ],
+    [
+        "CLIENTE",
+        cliente,
+        "RUC",
+        ruc
+    ],
 
-        [
-            "RUC:",
-            ruc,
-            "SERVICIO:",
-            servicio
-        ],
+    [
+        "UBICACIÓN",
+        ubicacion,
+        "LOCAL",
+        local
+    ],
 
-        [
-            "UBICACIÓN:",
-            ubicacion,
-            "FECHA:",
-            fecha
-        ]
+    [
+        "EQUIPO",
+        equipo,
+        "EQUIPOS ENERGIZADOS",
+        equiposEnergizados
+    ],
 
+    [
+        "SERVICIO",
+        servicio,
+        "FECHA",
+        fecha
     ]
 
+]
 });
 const alcance =
 equipoActual.querySelector(
