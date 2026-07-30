@@ -322,6 +322,7 @@ function configurarClientes(){
 
 }
 configurarClientes();
+generarReporteFotografico();
 });
 
 function crearDatosGenerales(numero){
