@@ -271,9 +271,49 @@ function configurarClientes(){
     `;
 
     break;
-    case "cliente4":
+     case "cliente4":
 
     ruc.value = "20493020618";
+
+    local.innerHTML = `
+        <option value="">Seleccione un local</option>
+
+        <option>Arequipa - OE</option>
+        <option>Cajamarca - OE</option>
+        <option>Cusco - OE</option>
+        <option>Huanuco - OE</option>
+        <option>Juliaca - OE</option>
+        <option>Lima Norte - OE</option>
+        <option>Megaplaza - OE</option>
+        <option>Miraflores - OE</option>
+        <option>Pucallpa - OE</option>
+        <option>Salaverry - OE</option>
+        <option>San Borja - OE</option>
+        <option>SJL - OE</option>
+        <option>Barranca - OE</option>
+        <option>Centro Civico - OE</option>
+        <option>Huancayo - OE</option>
+        <option>Jiron - OE</option>
+        <option>Jockey - OE</option>
+        <option>Mall del Sur - OE</option>
+        <option>Piura - OE</option>
+        <option>Primavera - OE</option>
+        <option>Puruchuco - OE</option>
+        <option>Sfera Puruchuco - OE</option>
+        <option>Trujillo - OE</option>
+    `;
+
+    break;
+    case "cliente5":
+
+    ruc.value = "20605900012";
+
+    local.innerHTML = `
+        <option value="">
+        </option>
+    `;
+
+    break;
 
     local.innerHTML = `
         <option value="">Seleccione un local</option>
@@ -367,6 +407,9 @@ function crearDatosGenerales(numero){
 
         <option value="cliente4">
         TIENDAS PERUANAS (OECHSLE)
+        </option>
+        <option value="cliente5">
+        FARMACIAS PERUANAS
         </option>
     </select>
 
@@ -479,54 +522,56 @@ El presente informe tiene como alcance describir las actividades realizadas dura
 
             <div style="margin-top:25px;">
 
-                <h2 class="seccion-titulo">
-                    EQUIPO INTERVENIDO
-                </h2>
+               <h2 class="seccion-titulo">
+    EQUIPO INTERVENIDO
+</h2>
 
-                <table class="tabla-info">
+<table class="tabla-info">
 
-                    <thead>
+    <thead>
+        <tr>
+            <th>Equipo</th>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Capacidad</th>
+            <th>Serie</th>
+        </tr>
+    </thead>
 
-                        <tr>
+    <tbody>
+        <tr>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+        </tr>
+    </tbody>
 
-                            <th>Equipo</th>
-                            <th>Marca</th>
-                            <th>Modelo</th>
-                            <th>Capacidad</th>
-                            <th>Serie</th>
+</table>
 
-                        </tr>
 
-                    </thead>
+<table class="tabla-info">
 
-                    <tbody>
+    <thead>
+        <tr>
+            <th>Tipo Rack / Torre</th>
+            <th>Tarjeta de red</th>
+            <th>Soporte para tipo torre</th>
+            <th>Caja de transferencia</th>
+        </tr>
+    </thead>
 
-                        <tr>
+    <tbody>
+        <tr>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+        </tr>
+    </tbody>
 
-                            <td>
-                                <input type="text">
-                            </td>
-
-                            <td>
-                                <input type="text">
-                            </td>
-
-                            <td>
-                                <input type="text">
-                            </td>
-
-                            <td>
-                                <input type="text">
-                            </td>
-
-                            <td>
-                                <input type="text">
-                            </td>
-
-                        </tr>
-
-                    </tbody>
-            </table>
+</table>
 
         </div>
 
@@ -1214,6 +1259,33 @@ const serie =
 equipoActual.querySelector(
 ".tabla-info tbody tr td:nth-child(5) input"
 )?.value || "";
+const tipoRack =
+equipoActual.querySelectorAll(
+".tabla-info"
+)[1]?.querySelector(
+"tbody tr td:nth-child(1) input"
+)?.value || "";
+
+const tarjetaRed =
+equipoActual.querySelectorAll(
+".tabla-info"
+)[1]?.querySelector(
+"tbody tr td:nth-child(2) input"
+)?.value || "";
+
+const soporteTorre =
+equipoActual.querySelectorAll(
+".tabla-info"
+)[1]?.querySelector(
+"tbody tr td:nth-child(3) input"
+)?.value || "";
+
+const cajaTransferencia =
+equipoActual.querySelectorAll(
+".tabla-info"
+)[1]?.querySelector(
+"tbody tr td:nth-child(4) input"
+)?.value || "";
 
 pdf.autoTable({
 
@@ -1345,6 +1417,46 @@ columnStyles:{
         modelo,
         capacidad,
         serie
+    ]]
+});
+pdf.autoTable({
+
+    startY: pdf.lastAutoTable.finalY + 5,
+
+    margin:{
+        left:25
+    },
+
+    tableWidth:130,
+
+    theme:"grid",
+
+    styles:{
+        fontSize:8,
+        halign:"center",
+        valign:"middle",
+        lineColor:[0,0,0],
+        lineWidth:0.2
+    },
+
+    headStyles:{
+        fillColor:[150,150,150],
+        textColor:[255,255,255],
+        fontStyle:"bold"
+    },
+
+    head:[[
+        "TIPO RACK / TORRE",
+        "TARJETA DE RED",
+        "SOPORTE PARA TIPO TORRE",
+        "CAJA DE TRANSFERENCIA"
+    ]],
+
+    body:[[
+        tipoRack,
+        tarjetaRed,
+        soporteTorre,
+        cajaTransferencia
     ]]
 
 });
