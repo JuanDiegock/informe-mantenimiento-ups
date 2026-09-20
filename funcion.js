@@ -363,6 +363,47 @@ function configurarClientes(){
 }
 configurarClientes();
 generarReporteFotografico();
+
+document.querySelectorAll(".equipo-card").forEach(equipo => {
+
+    const fechaInput =
+        equipo.querySelector(".fecha-input");
+
+    const fechaTexto =
+        equipo.querySelector(".fecha-trabajos");
+
+    function actualizarFechaTrabajos(){
+
+        if(!fechaInput.value){
+            fechaTexto.textContent = "__________";
+            return;
+        }
+
+        const partes = fechaInput.value.split("-");
+
+        const año = partes[0];
+        const mes = parseInt(partes[1]) - 1;
+        const dia = partes[2];
+
+        const fecha = new Date(año, mes, dia);
+
+        const nombreMes =
+            fecha.toLocaleString("es-PE", {
+                month: "long"
+            });
+
+        fechaTexto.textContent =
+            `${dia} de ${nombreMes} de ${año}`;
+    }
+
+    fechaInput.addEventListener(
+        "change",
+        actualizarFechaTrabajos
+    );
+
+    actualizarFechaTrabajos();
+
+});
 });
 
 function crearDatosGenerales(numero){
@@ -372,7 +413,7 @@ function crearDatosGenerales(numero){
     <div class="equipo-card">
 
         <div class="equipo-header">
-            EQUIPO ${numero}
+            INFORME DE INSTALACIÓN
         </div>
 
         <div class="seccion">
@@ -383,641 +424,1233 @@ function crearDatosGenerales(numero){
 
             <div class="grid-datos">
 
-              <div class="campo">
+                <div class="campo">
 
-    <label>Cliente</label>
+                    <label>Cliente</label>
 
-    <select class="cliente-select">
+                    <select class="cliente-select">
 
-        <option value="">
-            Seleccione un cliente
-        </option>
+                        <option value="">
+                            Seleccione un cliente
+                        </option>
 
-        <option value="cliente1">
-            COMPAÑÍA FOOD RETAIL
-        </option>
+                        <option value="cliente1">
+                            COMPAÑÍA FOOD RETAIL
+                        </option>
 
-        <option value="cliente2">
-            MAKRO SUPERMAYORISTA
-        </option>
+                        <option value="cliente2">
+                            MAKRO SUPERMAYORISTA
+                        </option>
 
-        <option value="cliente3">
-            OSLO
-        </option>
+                        <option value="cliente3">
+                            OSLO
+                        </option>
 
-        <option value="cliente4">
-        TIENDAS PERUANAS (OECHSLE)
-        </option>
-        <option value="cliente5">
-        FARMACIAS PERUANAS
-        </option>
-    </select>
+                        <option value="cliente4">
+                            TIENDAS PERUANAS (OECHSLE)
+                        </option>
 
-</div>
+                        <option value="cliente5">
+                            FARMACIAS PERUANAS
+                        </option>
 
-               <div class="campo">
+                    </select>
 
-    <label>RUC</label>
+                </div>
 
-    <input
-        type="text"
-        class="ruc-input"
-        readonly>
 
-</div>
+                <div class="campo">
 
-<div class="campo">
-    <label>Ubicación</label>
+                    <label>RUC</label>
 
-    <select class="ubicacion-input">
+                    <input
+                        type="text"
+                        class="ruc-input"
+                        readonly>
 
-        <option value="">
-            Seleccione una ubicación
-        </option>
+                </div>
 
-        <option value="Cuarto de Comunicaciones">
-            Cuarto de Comunicaciones
-        </option>
 
-        <option value="Cuarto de Sistemas">
-            Cuarto de Sistemas
-        </option>
+                <div class="campo">
 
-    </select>
-</div>
+                    <label>Ubicación</label>
 
-<div class="campo">
+                    <input
+                        type="text"
+                        class="ubicacion-input"
+                        placeholder="Ingrese la ubicación">
 
-    <label>Local</label>
+                </div>
 
-    <select class="local-select">
 
-        <option value="">
-            Seleccione un cliente primero
-        </option>
+                <div class="campo">
 
-    </select>
+                    <label>Local</label>
 
-</div>
+                    <select class="local-select">
 
-<div class="campo">
-    <label>Equipo</label>
-    <input
-        type="text"
-        class="equipo-input">
-</div>
-<div class="campo">
-    <label>Equipos Energizados</label>
+                        <option value="">
+                            Seleccione un cliente primero
+                        </option>
 
-    <select class="equipos-energizados-input">
+                    </select>
 
-        <option value="">
-            Seleccione una opción
-        </option>
+                </div>
 
-        <option value="Cajas">
-            Cajas
-        </option>
 
-        <option value="Servidores/Oficina">
-            Servidores/Oficina
-        </option>
+                <div class="campo">
 
-        <option value="Cámaras Videovigilancia">
-            Cámaras Videovigilancia
-        </option>
+                    <label>Equipos Energizados</label>
 
-    </select>
-</div>
+                    <select class="equipos-energizados-input">
 
-<div class="campo">
-    <label>Servicio</label>
-    <input
-        type="text"
-        class="servicio-input">
-</div>
+                        <option value="">
+                            Seleccione una opción
+                        </option>
 
-<div class="campo">
-    <label>Fecha del Servicio</label>
-    <input
-        type="date"
-        class="fecha-input">
-</div>
+                        <option value="Servicio 1">
+                            Caja de Transferencia
+                        </option>
+
+                        <option value="Servicio 2">
+                            Sistemas
+                        </option>
+
+                        <option value="Servicio 3">
+                            Servidores
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label>Servicio</label>
+
+                    <input
+                        type="text"
+                        class="servicio-input"
+                        value="Instalación de UPS + Caja de Transferencia">
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label>Fecha del Servicio</label>
+
+                    <input
+                        type="date"
+                        class="fecha-input">
+
+                </div>
 
             </div>
+
+
+            <!-- =========================
+                 I. PRESENTACIÓN
+            ========================== -->
 
             <div class="alcance-box">
 
                 <h2 class="seccion-titulo">
-                    I. ALCANCE
+                    I. PRESENTACIÓN
                 </h2>
 
-                <textarea>
-
-El presente informe tiene como alcance describir las actividades realizadas durante el mantenimiento preventivo y/o correctivo del sistema UPS, verificando su correcto funcionamiento, estado operativo y condiciones generales de los componentes asociados.
-
+                <textarea readonly>
+En el presente informe se detalla el servicio de instalación de un sistema de alimentación ininterrumpida (UPS) y una caja de transferencia.
                 </textarea>
 
             </div>
 
-            <div style="margin-top:25px;">
 
-               <h2 class="seccion-titulo">
-    EQUIPO INTERVENIDO
-</h2>
+            <!-- =========================
+                 II. EPPS Y EQUIPO
+            ========================== -->
 
-<table class="tabla-info">
+            <div class="inspeccion-box">
 
-    <thead>
-        <tr>
-            <th>Equipo</th>
-            <th>Marca</th>
-            <th>Modelo</th>
-            <th>Capacidad</th>
-            <th>Serie</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        <tr>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
-        </tr>
-    </tbody>
-
-</table>
+                <h2 class="seccion-titulo">
+                    II. EPPS Y EQUIPO PARA LA EJECUCIÓN DEL SERVICIO
+                </h2>
 
 
-<table class="tabla-info">
+                <div class="checklist-actividades">
 
-    <thead>
-        <tr>
-            <th>Tipo Rack / Torre</th>
-            <th>Tarjeta de red</th>
-            <th>Soporte para tipo torre</th>
-            <th>Caja de transferencia</th>
-        </tr>
-    </thead>
+                    <div class="checklist-item">
 
-    <tbody>
-        <tr>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
-        </tr>
-    </tbody>
+                        <input
+                            type="checkbox"
+                            id="epp${numero}_1">
 
-</table>
+                        <label for="epp${numero}_1">
+                            Casco de seguridad
+                        </label>
 
-        </div>
+                    </div>
 
-<div class="inspeccion-box">
 
-    <h2 class="seccion-titulo">
-        II. INSPECCIÓN PRELIMINAR
-    </h2>
+                    <div class="checklist-item">
 
-    <textarea>
+                        <input
+                            type="checkbox"
+                            id="epp${numero}_2">
 
-Los equipos detallados fueron instalados en el cuarto de tableros, en formato torre (piso), pertenecen al Tablero TD-UPS1. Durante la inspección, se verificó el estado del UPS existente (inoperativo), el estado de las conexiones eléctricas de entrada y salida, el sistema de puesta a tierra, así como el ambiente y las condiciones del tablero eléctrico para la instalación del nuevo UPS. Asimismo, se verifico el estado del banco externo de baterias y sus conexiones.   El UPS existente, marca LEGRAND, se encontró inoperativo, con fallas en la etapa de potencia (inversor), trabajando en modo bypass con la red comercial. Asimismo, se verifico el estado de las baterias del banco externo (60 unidades, capacidad 12V-18Ah), marca RITAR, año de fabricación 2024, las cuales se encontraron en buenas condiciones físicas y eléctricas.  
+                        <label for="epp${numero}_2">
+                            Guantes de seguridad
+                        </label>
 
-    </textarea>
+                    </div>
 
-</div>
+
+                    <div class="checklist-item">
+
+                        <input
+                            type="checkbox"
+                            id="epp${numero}_3">
+
+                        <label for="epp${numero}_3">
+                            Lentes de seguridad
+                        </label>
+
+                    </div>
+
+
+                    <div class="checklist-item">
+
+                        <input
+                            type="checkbox"
+                            id="epp${numero}_4">
+
+                        <label for="epp${numero}_4">
+                            Botas de seguridad
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <!-- UPS ANTIGUO -->
+
+                <h3 style="margin-top:30px;color:#003f73;">
+                    UPS ANTIGUO
+                </h3>
+
+                <table class="tabla-info">
+
+                    <thead>
+
+                        <tr>
+
+                            <th colspan="2">
+                                DATOS TÉCNICOS DEL EQUIPO
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>Equipo</td>
+
+                            <td>
+                                <input type="text" value="UPS">
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>Marca</td>
+
+                            <td>
+                                <input type="text">
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>Modelo</td>
+
+                            <td>
+                                <input type="text">
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>Serie</td>
+
+                            <td>
+                                <input type="text">
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>Potencia</td>
+
+                            <td>
+                                <input type="text">
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+
+                <!-- UPS NUEVO -->
+
+                <h3 style="margin-top:30px;color:#003f73;">
+                    UPS NUEVO
+                </h3>
+
+                <table class="tabla-info">
+
+                    <thead>
+
+                        <tr>
+
+                            <th colspan="2">
+                                DATOS TÉCNICOS DEL EQUIPO
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>Equipo</td>
+
+                            <td>
+                                <input type="text" value="UPS">
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>Marca</td>
+
+                            <td>
+                                <input type="text">
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>Modelo</td>
+
+                            <td>
+                                <input type="text">
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>Serie</td>
+
+                            <td>
+                                <input type="text">
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>Potencia</td>
+
+                            <td>
+                                <input type="text">
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+
+                <!-- CAJA DE TRANSFERENCIA ANTIGUA -->
+
+                <h3 style="margin-top:30px;color:#003f73;">
+                    CAJA DE TRANSFERENCIA ANTIGUA
+                </h3>
+
+                <table class="tabla-info">
+
+                    <thead>
+
+                        <tr>
+
+                            <th colspan="2">
+                                DATOS TÉCNICOS DEL EQUIPO
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>Equipo</td>
+
+                            <td>
+                                <input
+                                    type="text"
+                                    value="CAJA DE TRANSFERENCIA">
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>Marca</td>
+
+                            <td>
+                                <input type="text">
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>Modelo</td>
+
+                            <td>
+                                <input type="text">
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>Serie</td>
+
+                            <td>
+                                <input type="text">
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+
+                <!-- CAJA DE TRANSFERENCIA NUEVA -->
+
+                <h3 style="margin-top:30px;color:#003f73;">
+                    CAJA DE TRANSFERENCIA NUEVA
+                </h3>
+
+                <table class="tabla-info">
+
+                    <thead>
+
+                        <tr>
+
+                            <th colspan="2">
+                                DATOS TÉCNICOS DEL EQUIPO
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>Equipo</td>
+
+                            <td>
+                                <input
+                                    type="text"
+                                    value="CAJA DE TRANSFERENCIA">
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>Marca</td>
+
+                            <td>
+                                <input type="text">
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>Modelo</td>
+
+                            <td>
+                                <input type="text">
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>Serie</td>
+
+                            <td>
+                                <input type="text">
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <!-- =========================
+                 III. ANTECEDENTES
+            ========================== -->
+
+            <div class="inspeccion-box">
+
+                <h2 class="seccion-titulo">
+                    III. ANTECEDENTES
+                </h2>
+
+<textarea readonly >
+El cliente solicitó la ejecución del servicio de instalación de un sistema de alimentación ininterrumpida (UPS) y la instalación de una caja de transferencia, con la finalidad de proporcionar alimentación eléctrica estabilizada y respaldo a las cargas críticas correspondientes a la línea de cajas.
+
+El servicio comprendió el traslado y ubicación de los equipos en el área destinada, instalación física del UPS, instalación y fijación de la caja de transferencia, ejecución de los conexionados eléctricos correspondientes, conexión al sistema de puesta a tierra, identificación de los circuitos de alimentación y salida, configuración inicial del UPS, puesta en marcha y ejecución de las pruebas funcionales.
+
+La intervención fue realizada considerando las condiciones existentes de la instalación eléctrica y coordinando previamente con el personal responsable del establecimiento, a fin de ejecutar los trabajos de manera segura y controlada.
+</textarea>
+
+            </div>
+
+
+<!-- =========================
+     IV. TRABAJOS REALIZADOS
+========================== -->
+
 <div class="actividades-box">
 
     <h2 class="seccion-titulo">
-        III. ACTIVIDADES REALIZADAS
+        IV. TRABAJOS REALIZADOS
     </h2>
 
-    <p style="margin-bottom:15px;">
-        Durante el servicio de instalación y conexionado del sistema UPS/SAI y banco externo de baterías, se realizaron las siguientes actividades:
+    <p>
+        El día <span class="fecha-trabajos">__________</span>, el personal técnico de INFRASOL S.A.C. ingresó a las instalaciones de Plaza Vea para ejecutar el servicio de instalación del nuevo sistema UPS y caja de transferencia. Antes de iniciar los trabajos, se verificaron las condiciones de seguridad del área y se coordinó con el personal de tienda el procedimiento para realizar la intervención sin afectar la operación.
     </p>
-    <div class="checklist-actividades">
 
-    <div class="checklist-item">
-    <input type="checkbox" id="act${numero}_1">
-    <label for="act${numero}_1">
-            Inspección visual del sistema UPS.
-        </label>
-    </div>
+    <p style="margin-top:25px;">
+        <strong>ACTIVIDADES EJECUTADAS:</strong>
+    </p>
 
-    <div class="checklist-item">
-    <input type="checkbox" id="act${numero}_2">
-    <label for="act${numero}_2">
-            Verificación del estado general de conexiones eléctricas.
-        </label>
-    </div>
+    <p style="margin-top:25px;">
+        <strong>Instalación física del UPS</strong>
+    </p>
 
-    <div class="checklist-item">
-    <input type="checkbox" id="act${numero}_3">
-    <label for="act${numero}_3">
-            Limpieza interna y externa del equipo.
-        </label>
-    </div>
+    <ul>
+        <li>
+            <strong>Ubicación:</strong> Colocamos el UPS en un lugar ventilado y de fácil acceso.
+        </li>
 
-    <div class="checklist-item">
-    <input type="checkbox" id="act${numero}_4">
-    <label for="act${numero}_4">
-            Ajuste y reapriete de terminales.
-        </label>
-    </div>
+        <li>
+            <strong>Conexión a Tierra:</strong> Conectamos el UPS a una toma de tierra adecuada para protección.
+        </li>
 
-    <div class="checklist-item">
-    <input type="checkbox" id="act${numero}_5">
-    <label for="act${numero}_5">
-            Verificación del sistema de ventilación.
-        </label>
-    </div>
+        <li>
+            <strong>Conexión Eléctrica:</strong>
+        </li>
+    </ul>
 
-    <div class="checklist-item">
-    <input type="checkbox" id="act${numero}_6">
-    <label for="act${numero}_6">
-            Comprobación de alarmas y eventos registrados.
-        </label>
-    </div>
+    <ul style="margin-left:40px;">
+        <li>
+            <strong><em>Entrada:</em></strong> Conectamos a la salida del transformador (baja tensión).
+        </li>
 
-    <div class="checklist-item">
-    <input type="checkbox" id="act${numero}_7">
-    <label for="act${numero}_7">
-            Verificación del estado del banco de baterías.
-        </label>
-    </div>
+        <li>
+            <strong><em>Salida:</em></strong> conectamos al tablero eléctrico de distribución.
+        </li>
+    </ul>
 
-    <div class="checklist-item">
-    <input type="checkbox" id="act${numero}_8">
-    <label for="act${numero}_8">
-            Pruebas funcionales del sistema UPS.
-        </label>
-    </div>
+    <ul>
+        <li>
+            Configuración inicial y puesta en marcha del equipo.
+        </li>
 
-</div>
+        <li>
+            Ejecución de pruebas funcionales, verificando parámetros de entrada, salida, frecuencia, autonomía y correcto funcionamiento del sistema.
+        </li>
 
-    <div style="margin-top:20px;">
+        <li>
+            Monitoreo del equipo durante la operación para confirmar la estabilidad del suministro eléctrico.
+        </li>
+    </ul>
 
-        <label><strong>Observaciones adicionales</strong></label>
+    <p style="margin-top:25px;">
+        <strong>Instalación de la caja de transferencia</strong>
+    </p>
 
-        <textarea
-            placeholder="Ingrese observaciones adicionales..."
-            rows="5">
-        </textarea>
+    <ul>
+        <li>
+            Ubicación de la caja de transferencia en el punto definido para la instalación.
+        </li>
 
-    </div>
+        <li>
+            Fijación mecánica de la caja.
+        </li>
 
-</div>
+        <li>
+            Identificación de los circuitos de alimentación.
+        </li>
 
-<table class="tabla-mediciones">
+        <li>
+            Identificación de la alimentación proveniente del UPS.
+        </li>
 
-    <tbody>
- <h2 class="seccion-titulo">
-        IV. MEDICIONES ELECTRICAS
-    </h2>
+        <li>
+            Identificación de la alimentación de bypass.
+        </li>
 
-        <tr>
-            <th colspan="4">
-                MEDICIONES ELÉCTRICAS
-            </th>
-        </tr>
+        <li>
+            Identificación de la salida hacia las cargas críticas.
+        </li>
 
-        <tr>
-            <td><strong>Parámetros de tensión</strong></td>
-            <th>R-S</th>
-            <th>S-T</th>
-            <th>T-R</th>
-        </tr>
+        <li>
+            Conexionado de los conductores correspondientes.
+        </li>
 
-        <tr>
-            <td>Tensión de entrada</td>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
-        </tr>
+        <li>
+            Verificación del ajuste de las conexiones eléctricas.
+        </li>
 
-        <tr>
-            <td>Tensión de bypass</td>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
-        </tr>
-
-        <tr>
-            <td>Tensión de salida</td>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
-        </tr>
-
-        <tr>
-            <td><strong>Parámetros de carga</strong></td>
-            <th>R</th>
-            <th>S</th>
-            <th>T</th>
-        </tr>
-
-        <tr>
-            <td>Corriente de entrada</td>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
-        </tr>
-
-        <tr>
-            <td>Corriente de salida</td>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
-        </tr>
-
-        <tr>
-            <td>Frecuencia</td>
-            <td colspan="3">
-                <input type="text">
-            </td>
-        </tr>
-
-        <tr>
-            <td>Temperatura ambiente</td>
-            <td colspan="3">
-                <input type="text">
-            </td>
-        </tr>
-
-    </tbody>
-
-</table>
-<div class="baterias-box">
-
-    <h3 style="margin-top:30px;color:#003f73;">
-        Mediciones en el BANCO DE BATERÍAS
-    </h3>
-
-    <table class="tabla-baterias">
-
-        <tbody>
-
-            <tr>
-                <th colspan="2">
-                    BANCO DE BATERÍAS
-                </th>
-            </tr>
-
-            <tr>
-                <td>Modelo</td>
-                <td><input type="text"></td>
-            </tr>
-
-            <tr>
-                <td>Capacidad</td>
-                <td><input type="text"></td>
-            </tr>
-
-            <tr>
-                <td>Cantidad</td>
-                <td><input type="text"></td>
-            </tr>
-
-            <tr>
-                <td>Configuración</td>
-                <td><input type="text"></td>
-            </tr>
-
-            <tr>
-                <td>Tensión nominal</td>
-                <td><input type="text"></td>
-            </tr>
-
-            <tr>
-                <td>Tensión de flotación</td>
-                <td><input type="text"></td>
-            </tr>
-
-            <tr>
-                <td>Tensión de descarga</td>
-                <td><input type="text"></td>
-            </tr>
-
-            <tr>
-                <td>Autonomía estimada</td>
-                <td><input type="text"></td>
-            </tr>
-
-            <tr>
-                <td>Año de fabricación</td>
-                <td><input type="text"></td>
-            </tr>
-
-        </tbody>
-
-    </table>
+        <li>
+            Ordenamiento y aseguramiento del cableado.
+        </li>
+    </ul>
 
 </div>
+            <!-- =========================
+                 V. MEDICIONES ELÉCTRICAS
+            ========================== -->
+
+            <div class="mediciones-box">
+
+                <h2 class="seccion-titulo">
+                    V. MEDICIONES ELÉCTRICAS
+                </h2>
+
+                <p>
+
+                    Para validar el desempeño del equipo y confirmar que los parámetros operan dentro de los valores establecidos, se registraron las mediciones eléctricas correspondientes al UPS y la caja de transferencia.
+
+                </p>
+
+
+                <h3 style="margin-top:25px;color:#003f73;">
+                    - Mediciones eléctricas del UPS
+                </h3>
+
+
+                <table class="tabla-mediciones">
+
+                    <tbody>
+
+                        <tr>
+
+                            <th>
+                                MEDICIONES ELÉCTRICAS
+                            </th>
+
+                            <th>R-S</th>
+                            <th>S-T</th>
+                            <th>T-R</th>
+
+                        </tr>
+
+
+                        <tr>
+                            <td>Parámetros de tensión</td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                        </tr>   
+
+
+                        <tr>
+
+                            <td>Tensión de entrada</td>
+
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>Tensión de bypass</td>
+
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>Tensión de salida</td>
+
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+
+                        </tr>
+
+
+                        <tr>
+                            <td>Parámetros de carga</td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                        </tr>
+
+
+                        <tr>
+
+                            <td>Corriente de entrada</td>
+
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>Corriente de salida</td>
+
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>Frecuencia</td>
+
+                            <td colspan="3">
+                            <input type="text">
+                            </td>
+
+                        </tr>
+
+
+                     <tr>
+
+                            <td>Temperatura ambiente</td>
+
+                            <td colspan="3">
+                            <input type="text">
+                            </td>
+
+                    </tr>
+
+                    </tbody>
+
+                </table>
+
+
+                <h3 style="margin-top:30px;color:#003f73;">
+                    - Mediciones eléctricas de la caja de transferencia
+                </h3>
+
+
+                <table class="tabla-mediciones">
+
+                    <tbody>
+
+                        <tr>
+
+                            <th>
+                                MEDICIONES ELÉCTRICAS
+                            </th>
+
+                            <th>R-S</th>
+                            <th>S-T</th>
+                            <th>T-R</th>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>Tensión de entrada</td>
+
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>Tensión de salida hacia UPS</td>
+
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>Tensión de bypass</td>
+
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>Corriente de entrada</td>
+
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>Corriente de salida</td>
+
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>Frecuencia</td>
+
+                            <td colspan="3">
+                                <input type="text">
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>Temperatura ambiente</td>
+
+                            <td colspan="3">
+                                <input type="text">
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <!-- =========================
+                 VI. PRUEBAS DE FUNCIONAMIENTO
+            ========================== -->
+
+            <div class="actividades-box">
+
+                <h2 class="seccion-titulo">
+                    VI. PRUEBAS DE FUNCIONAMIENTO
+                </h2>
+
+                <p>
+
+                    Con el fin de verificar la operatividad del UPS y la caja de transferencia se ejecutaron las pruebas de funcionamiento correspondientes. Los resultados son los siguientes:
+
+                </p>
+
+
+                <h3 style="margin-top:25px;color:#003f73;">
+                    - Pruebas de funcionamiento del UPS
+                </h3>
+
+
+                <table class="tabla-pruebas">
+
+                    <tr>
+
+                        <th>
+                            PRUEBA EJECUTADA
+                        </th>
+
+                        <th>
+                            RESULTADO
+                        </th>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Encendido y operación inicial sin alarmas
+                        </td>
+
+                        <td>
+                            <select>
+                                <option>Conforme</option>
+                                <option>Desconforme</option>
+                            </select>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Funcionamiento en modo Línea (Online)
+                        </td>
+
+                        <td>
+                            <select>
+                                <option>Conforme</option>
+                                <option>Desconforme</option>
+                            </select>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Transferencia a bypass y retorno
+                        </td>
+
+                        <td>
+                            <select>
+                                <option>Conforme</option>
+                                <option>Desconforme</option>
+                            </select>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Operación del inversor bajo carga
+                        </td>
+
+                        <td>
+                            <select>
+                                <option>Conforme</option>
+                                <option>Desconforme</option>
+                            </select>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Estabilidad de tensión y frecuencia en salida
+                        </td>
+
+                        <td>
+                            <select>
+                                <option>Conforme</option>
+                                <option>Desconforme</option>
+                            </select>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Verificación de funcionamiento del UPS bajo carga
+                        </td>
+
+                        <td>
+                            <select>
+                                <option>Conforme</option>
+                                <option>Desconforme</option>
+                            </select>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Restablecimiento a condiciones normales
+                        </td>
+
+                        <td>
+                            <select>
+                                <option>Conforme</option>
+                                <option>Desconforme</option>
+                            </select>
+                        </td>
+
+                    </tr>
+
+                </table>
+
+
+                <h3 style="margin-top:30px;color:#003f73;">
+                    - Pruebas de funcionamiento de la caja de transferencia
+                </h3>
+
+
+                <table class="tabla-pruebas">
+
+                    <tr>
+
+                        <th>
+                            PRUEBA EJECUTADA
+                        </th>
+
+                        <th>
+                            RESULTADO
+                        </th>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Comprobación de conexiones de entrada y salida
+                        </td>
+
+                        <td>
+                            <select>
+                                <option>Conforme</option>
+                                <option>Desconforme</option>
+                            </select>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Verificación de tensión en entrada y salida
+                        </td>
+
+                        <td>
+                            <select>
+                                <option>Conforme</option>
+                                <option>Desconforme</option>
+                            </select>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Prueba de transferencia manual
+                        </td>
+
+                        <td>
+                            <select>
+                                <option>Conforme</option>
+                                <option>Desconforme</option>
+                            </select>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Prueba de transferencia automática
+                        </td>
+
+                        <td>
+                            <select>
+                                <option>Conforme</option>
+                                <option>Desconforme</option>
+                            </select>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Ensayo de transferencia de carga y retorno a fuente principal
+                        </td>
+
+                        <td>
+                            <select>
+                                <option>Conforme</option>
+                                <option>Desconforme</option>
+                            </select>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Restablecimiento a condiciones normales de operación
+                        </td>
+
+                        <td>
+                            <select>
+                                <option>Conforme</option>
+                                <option>Desconforme</option>
+                            </select>
+                        </td>
+
+                    </tr>
+
+                </table>
+
+            </div>
+
+
+            <!-- =========================
+                 VII. REGISTRO VISUAL
+            ========================== -->
+
+            <h2 class="seccion-titulo">
+                VII. REGISTRO VISUAL
+            </h2>
+
+            <div class="reporteFotografico reporte-fotos"></div>
+
+
+            <!-- =========================
+                 VIII. RESULTADOS
+            ========================== -->
+
+            <h2 class="seccion-titulo">
+                VIII. RESULTADOS DE LA INSTALACIÓN
+            </h2>
+
+            <div class="campo-conclusiones">
+
+            <textarea
+            rows="8"
+            readonly>Finalizada la instalación, el nuevo sistema UPS y caja de transferencia quedaron operando de manera correcta. Se verificó el correcto funcionamiento de los circuitos de entrada y salida, así como la ausencia de alarmas o eventos de falla durante las pruebas operativas. Los equipo quedó en condiciones adecuadas para su operación continua.</textarea>
+
+            </div>
+
+<!-- =========================
+     IX. OBSERVACIÓN
+========================== -->
 
 <h2 class="seccion-titulo">
-    V. PRUEBAS DE FUNCIONAMIENTO
-</h2>
-
-<p>
-Con el fin de verificar la operatividad del sistema de respaldo, se ejecutaron las pruebas de funcionamiento correspondientes. Los resultados son los siguientes:
-</p>
-
-<table class="tabla-pruebas">
-
-    <tr>
-        <th>PRUEBA EJECUTADA</th>
-        <th>RESULTADO</th>
-    </tr>
-
-    <tr>
-        <td>Encendido y operación inicial sin alarmas</td>
-        <td>
-            <select>
-                <option>Conforme</option>
-                <option>Desconforme</option>
-            </select>
-        </td>
-    </tr>
-
-    <tr>
-        <td>Funcionamiento en modo Línea (Online)</td>
-        <td>
-            <select>
-                <option>Conforme</option>
-                <option>Desconforme</option>
-            </select>
-        </td>
-    </tr>
-
-    <tr>
-        <td>Transferencia a bypass y retorno</td>
-        <td>
-            <select>
-                <option>Conforme</option>
-                <option>Desconforme</option>
-            </select>
-        </td>
-    </tr>
-
-    <tr>
-        <td>Operación del inversor bajo carga</td>
-        <td>
-            <select>
-                <option>Conforme</option>
-                <option>Desconforme</option>
-            </select>
-        </td>
-    </tr>
-
-    <tr>
-        <td>Estabilidad de tensión y frecuencia en salida</td>
-        <td>
-            <select>
-                <option>Conforme</option>
-                <option>Desconforme</option>
-            </select>
-        </td>
-    </tr>
-
-    <tr>
-        <td>Verificación del banco de baterías</td>
-        <td>
-            <select>
-                <option>Conforme</option>
-                <option>Desconforme</option>
-            </select>
-        </td>
-    </tr>
-
-    <tr>
-        <td>Restablecimiento a condiciones normales</td>
-        <td>
-            <select>
-                <option>Conforme</option>
-                <option>Desconforme</option>
-            </select>
-        </td>
-    </tr>
-
-</table>
-<h2 class="seccion-titulo">
-    VI. CONCLUSIONES
+    IX. OBSERVACIÓN
 </h2>
 
 <div class="campo-conclusiones">
 
-    <textarea
-        rows="8"
-        placeholder="Ingrese las conclusiones del servicio realizado..."
-    ></textarea>
+    <textarea rows="8"
+        placeholder="Ingrese las observaciones correspondientes al servicio."></textarea>
 
 </div>
+
+
+<!-- =========================
+     X. RECOMENDACIONES
+========================== -->
+
 <h2 class="seccion-titulo">
-    VII. RECOMENDACIONES
+    X. RECOMENDACIONES
 </h2>
 
 <div class="campo-recomendaciones">
+
     <textarea
         rows="8"
-        placeholder="Ingrese las recomendaciones del servicio realizado..."
+        placeholder="Ingrese las recomendaciones correspondientes al servicio."
     ></textarea>
-</div>
-<h2 class="seccion-titulo">
-    VIII. ESTADO FINAL DEL EQUIPO
-</h2>
-
-<div class="estado-final">
-
-    <label class="estado-opcion">
-        <input type="radio" name="estadoEquipo${numero}" value="Operativo">
-        OPERATIVO
-    </label>
-
-    <label class="estado-opcion">
-        <input type="radio" name="estadoEquipo${numero}" value="Operativo con observación">
-        OPERATIVO CON OBSERVACIÓN
-    </label>
-
-    <label class="estado-opcion">
-        <input type="radio" name="estadoEquipo${numero}" value="Inoperativo">
-        INOPERATIVO
-    </label>
 
 </div>
-<table class="tabla-responsable">
 
-    <tr>
+    </div>
 
-        <td class="titulo-responsable">
-            PROFESIONAL RESPONSABLE:
-        </td>
-
-        <td>
-            <input type="text" placeholder="Nombre del responsable">
-
-            <br><br>
-
-            <input
-                type="email"
-                placeholder="Correo electrónico">
-        </td>
-
-        <td>
-            <input
-                type="text"
-                placeholder="Área / Cargo">
-        </td>
-
-    </tr>
-
-</table>
-<h2 class="seccion-titulo">
-    IX. REPORTE FOTOGRÁFICO
-</h2>
-
-<div class="reporteFotografico reporte-fotos"></div>
-
-`;
+    `;
 
 }
+
 const descripcionesFotos = [
 
-"Vista del ambiente de trabajo",
-"Vista del UPS antiguo (inoperativo)",
-"Alarma presente en el UPS antiguo (fallas DC)",
-"Vista del banco externo de baterías",
-"Vista del tablero eléctrico",
-"Circuitos conectados en el Tablero TD-UPS1",
-"Desconexión del UPS antiguo",
-"Desconexión del UPS antiguo",
-"Vista del nuevo UPS, marca SALICRU",
-"Placa de características del UPS",
-"Vista del conexionado del UPS",
-"Vista interna del banco de baterías",
-"Modificación de configuración del banco",
-"Vista de las baterías, marca RITAR",
-"Mediciones individuales de las baterías",
-"Mediciones generales del banco",
-"Puesta en marcha del sistema UPS",
-"Configuración de los valores nominales",
-"Configuración de los valores nominales",
-"Pruebas de funcionamiento en modo Bypass",
-"Pruebas de funcionamiento en modo Inversor",
-"Parámetros eléctricos de entrada",
-"Parámetros eléctricos de salida",
-"Parámetros eléctricos de baterías",
-"Pruebas de funcionamiento en modo Baterías",
-"Parámetros eléctricos en modo baterías",
-"Mediciones eléctricas de salida",
-"Mediciones eléctricas de salida",
-"Mediciones de corriente de entrada",
-"Mediciones de corriente de salida",
-"Vista del nuevo UPS después de la instalación",
-"Vista de los equipos finalizado el servicio",
-"Vista del ambiente de trabajo finalizado el servicio",
-"Vista final del UPS inoperativo"
+    "DIAGRAMA DE TABLERO",
+
+    "TABLERO ELECTRICO",
+
+    "UPS DE ANTIGUO",
+
+    "INSTALACION DE UPS NUEVO",
+
+    "PRUEBAS DE AUTONOMIA DE UPS",
+
+    "SITUACION FINAL",
+
+    "CAJA DE TRANSFERENCIA ANTIGUA",
+
+    "CAJA DE TRANSFERENCIA ANTIGUA",
+
+    "CAJA DE TRANSFERENCIA ANTIGUA",
+
+    "CAJA DE TRANSFERENCIA ANTIGUA"
 
 ];
 
@@ -1045,14 +1678,120 @@ function generarReporteFotografico() {
                         ${numero}. ${descripcion}
                     </div>
 
-                    <input
-                        type="file"
-                        accept="image/*">
+                    <div>
+                        <input
+                            type="file"
+                            accept="image/*">
+
+                        <input
+                            type="file"
+                            accept="image/*">
+                    </div>
 
                 </div>
             `;
 
         });
+
+        // =========================
+        // BOTÓN AGREGAR PUNTO
+        // =========================
+
+            const botonAgregar =
+                document.createElement("button");
+
+            botonAgregar.type = "button";
+
+            botonAgregar.textContent =
+                "+ AGREGAR IMAGEN";
+
+            botonAgregar.className =
+            "btn-agregar-punto";
+
+        botonAgregar.addEventListener(
+            "click",
+            ()=>{
+
+                const puntosActuales =
+                    contenedor.querySelectorAll(
+                        ".foto-item"
+                    ).length;
+
+                const nuevoNumero =
+                    puntosActuales + 1;
+
+const nuevoPunto =
+    document.createElement("div");
+
+nuevoPunto.className =
+    "foto-item foto-item-extra";
+
+nuevoPunto.innerHTML = `
+
+    <div class="foto-titulo">
+
+        ${nuevoNumero}.
+
+        <input
+            type="text"
+            class="titulo-foto-extra"
+            placeholder="ESCRIBA EL TÍTULO"
+            style="text-transform:uppercase;">
+
+        <button
+    type="button"
+    class="btn-eliminar-punto">
+    ELIMINAR
+</button>
+
+    </div>
+
+    <div>
+        <input
+            type="file"
+            accept="image/*">
+
+        <input
+            type="file"
+            accept="image/*">
+    </div>
+
+`;
+
+                contenedor.appendChild(
+                    nuevoPunto
+                );
+
+                const titulo =
+                    nuevoPunto.querySelector(
+                        ".titulo-foto-extra"
+                    );
+
+                titulo.addEventListener(
+                    "input",
+                    ()=>{
+                        titulo.value =
+                            titulo.value.toUpperCase();
+                    }
+                );
+                const botonEliminar =
+                nuevoPunto.querySelector(
+                    ".btn-eliminar-punto"
+                );
+
+            botonEliminar.addEventListener(
+                "click",
+                ()=>{
+                    nuevoPunto.remove();
+                }
+            );
+
+            }
+        );
+
+        contenedor.appendChild(
+            botonAgregar
+        );
 
     });
 
@@ -1142,8 +1881,6 @@ async function generarPDF(){
 
     const { jsPDF } = window.jspdf;
 
-    const pdf = new jsPDF("p","mm","a4");
-
     const codigo =
     document.getElementById("codigoInforme").value;
 
@@ -1151,12 +1888,14 @@ async function generarPDF(){
 document.querySelectorAll(".equipo-card");
 
     
+const logo = new Image();
 
-    const logo = new Image();
+logo.src = "Infrasol.png";
 
-    logo.src = "Infrasol.png";
-
-logo.onload = async function(){
+await new Promise((resolve) => {
+    logo.onload = resolve;
+    logo.onerror = resolve;
+});
 
     for(let indice = 0; indice < equipos.length; indice++){
         const codigoEquipo =
@@ -1179,9 +1918,9 @@ const equipo =
 equipoActual.querySelector(".equipo-input")?.value || "";
 
 const equiposEnergizados =
-equipoActual.querySelector(".equipos-energizados-input")?.value || "";
+    equipoActual.querySelector(".equipos-energizados-input")?.selectedOptions[0]?.text.trim() || "";
 
-const servicio =
+    const servicio =
 equipoActual.querySelector(".servicio-input")?.value || "";
 
 const fecha =
@@ -1190,14 +1929,16 @@ equipoActual.querySelector(".fecha-input")?.value || "";
         const pdf =
         new jsPDF("p","mm","a4");
 
-        pdf.addImage(
-            logo,
-            "PNG",
-            8,
-            8,
-            10,
-            10
-        );
+   if (logo.complete && logo.naturalWidth > 0) {
+    pdf.addImage(
+        logo,
+        "PNG",
+        8,
+        8,
+        10,
+        10
+    );
+}
 
 pdf.setFont(
     "times",
@@ -1318,7 +2059,7 @@ pdf.autoTable({
             cellWidth:60
         }
     },
-    body:[
+body:[
 
     [
         "CLIENTE",
@@ -1335,10 +2076,10 @@ pdf.autoTable({
     ],
 
     [
-        "EQUIPO",
-        equipo,
         "EQUIPOS ENERGIZADOS",
-        equiposEnergizados
+        equiposEnergizados,
+        "",
+        ""
     ],
 
     [
@@ -1370,99 +2111,8 @@ textoAlcance.length * 5;
 let yTabla =
 y + alturaTexto + 5;
 
-pdf.autoTable({
-
-    startY: yTabla,
-
-margin:{
-    left:25
-},
-
-tableWidth:130,
-
-    theme: "grid",
-columnStyles:{
-    0:{cellWidth:35},
-    1:{cellWidth:25},
-    2:{cellWidth:45},
-    3:{cellWidth:25},
-    4:{cellWidth:25}
-},
-
-    styles:{
-        fontSize:8,
-        halign:"center",
-        valign:"middle",
-        lineColor:[0,0,0],
-        lineWidth:0.2
-    },
-
-    headStyles:{
-        fillColor:[150,150,150],
-        textColor:[255,255,255],
-        fontStyle:"bold"
-    },
-
-    head:[[
-        "EQUIPO",
-        "MARCA",
-        "MODELO",
-        "CAPACIDAD",
-        "SERIE"
-    ]],
-
-    body:[[
-        eq,
-        marca,
-        modelo,
-        capacidad,
-        serie
-    ]]
-});
-pdf.autoTable({
-
-    startY: pdf.lastAutoTable.finalY + 5,
-
-    margin:{
-        left:25
-    },
-
-    tableWidth:130,
-
-    theme:"grid",
-
-    styles:{
-        fontSize:8,
-        halign:"center",
-        valign:"middle",
-        lineColor:[0,0,0],
-        lineWidth:0.2
-    },
-
-    headStyles:{
-        fillColor:[150,150,150],
-        textColor:[255,255,255],
-        fontStyle:"bold"
-    },
-
-    head:[[
-        "TIPO RACK / TORRE",
-        "TARJETA DE RED",
-        "SOPORTE PARA TIPO TORRE",
-        "CAJA DE TRANSFERENCIA"
-    ]],
-
-    body:[[
-        tipoRack,
-        tarjetaRed,
-        soporteTorre,
-        cajaTransferencia
-    ]]
-
-});
-
 const alturaCaja =
-(pdf.lastAutoTable.finalY - y) + 10;
+    alturaTexto + 25;
 
 pdf.rect(
     15,
@@ -1498,7 +2148,7 @@ pdf.setFont(
 pdf.setFontSize(11);
 
 pdf.text(
-    "1. ALCANCE:",
+"I. PRESENTACIÓN",
     20,
     y + 7
 );
@@ -1520,28 +2170,68 @@ pdf.rect(
     180,
     alturaCaja
 );
-const inspeccion =
-equipoActual.querySelector(
-".inspeccion-box textarea"
-)?.value || "";
+const epps = [];
+
+equipoActual.querySelectorAll(
+    ".inspeccion-box .checklist-item"
+).forEach(item => {
+    const check = item.querySelector("input[type='checkbox']");
+    const texto = item.querySelector("label")?.textContent.trim();
+
+    if (check?.checked && texto) {
+        epps.push("• " + texto);
+    }
+});
+const tablasEquipo =
+equipoActual.querySelectorAll(
+    ".inspeccion-box .tabla-info"
+);
+
+const datosUPSAntiguo =
+[...tablasEquipo[0].querySelectorAll("tbody tr")]
+.map(fila => fila.querySelector("td:nth-child(2) input")?.value || "");
+
+const datosUPSNuevo =
+[...tablasEquipo[1].querySelectorAll("tbody tr")]
+.map(fila => fila.querySelector("td:nth-child(2) input")?.value || "");
+
+const datosCajaAntigua =
+[...tablasEquipo[2].querySelectorAll("tbody tr")]
+.map(fila => fila.querySelector("td:nth-child(2) input")?.value || "");
+
+const datosCajaNueva =
+[...tablasEquipo[3].querySelectorAll("tbody tr")]
+.map(fila => fila.querySelector("td:nth-child(2) input")?.value || "");
 
 let yInspeccion =
-pdf.lastAutoTable.finalY + 15;
+    y + alturaCaja + 15;
 
-const textoInspeccion =
+const antecedentes =
+equipoActual.querySelector(
+    ".inspeccion-box textarea"
+)?.value || "";
+
+const textoAntecedentes =
 pdf.splitTextToSize(
-    inspeccion,
+    antecedentes,
     160
 );
 
-const alturaInspeccion =
-(textoInspeccion.length * 5) + 25;
+// =========================
+// II. EPPS Y EQUIPO
+// =========================
+
+const alturaEpps =
+    Math.max(
+        35,
+        25 + (epps.length * 6)
+    );
 
 pdf.rect(
     15,
     yInspeccion,
     180,
-    alturaInspeccion
+    alturaEpps
 );
 
 pdf.setFillColor(
@@ -1573,7 +2263,7 @@ pdf.setFont(
 pdf.setFontSize(11);
 
 pdf.text(
-    "2. INSPECCIÓN PRELIMINAR:",
+    "II. EPPS Y EQUIPO PARA LA EJECUCIÓN DEL SERVICIO",
     20,
     yInspeccion + 7
 );
@@ -1585,41 +2275,239 @@ pdf.setFont(
 
 pdf.setFontSize(10);
 
-pdf.text(
-    textoInspeccion,
-    22,
-    yInspeccion + 20
+let yEpps =
+    yInspeccion + 20;
+
+if (epps.length > 0) {
+
+    epps.forEach(item => {
+
+        pdf.text(
+            item,
+            22,
+            yEpps
+        );
+
+        yEpps += 6;
+
+    });
+
+} else {
+
+    pdf.text(
+        "No se seleccionaron EPP.",
+        22,
+        yEpps
+    );
+
+}
+
+
+// =========================
+// DATOS DE LOS EQUIPOS
+// =========================
+
+let yEquipos =
+    yInspeccion + alturaEpps + 10;
+
+
+function tablaEquipoPDF(
+    titulo,
+    datos,
+    incluirPotencia = false
+) {
+
+    const filas = [
+
+        ["Equipo", datos[0] || ""],
+        ["Marca", datos[1] || ""],
+        ["Modelo", datos[2] || ""],
+        ["Serie", datos[3] || ""]
+
+    ];
+
+    if (incluirPotencia) {
+
+        filas.push(
+            ["Potencia", datos[4] || ""]
+        );
+
+    }
+
+    pdf.autoTable({
+
+        startY: yEquipos,
+        pageBreak: "avoid",
+        margin:{
+            left:20,
+            right:20
+        },
+
+        theme:"grid",
+
+        styles:{
+            fontSize:8,
+            lineColor:[0,0,0],
+            lineWidth:0.2,
+            cellPadding:2
+        },
+
+        headStyles:{
+            fillColor:[220,220,220],
+            textColor:[0,0,0],
+            fontStyle:"bold"
+        },
+
+        head:[
+            [
+                titulo,
+                "DATOS TÉCNICOS DEL EQUIPO"
+            ]
+        ],
+
+        body: filas
+
+    });
+
+    yEquipos =
+        pdf.lastAutoTable.finalY + 8;
+
+}
+
+
+// UPS ANTIGUO
+
+tablaEquipoPDF(
+    "UPS ANTIGUO",
+    datosUPSAntiguo,
+    true
+);
+
+
+// UPS NUEVO
+
+tablaEquipoPDF(
+    "UPS NUEVO",
+    datosUPSNuevo,
+    true
+);
+
+
+// =========================
+// SEGUNDA PARTE DEL II
+// =========================
+
+yEquipos =
+    pdf.lastAutoTable.finalY + 8;
+
+
+// CAJA DE TRANSFERENCIA ANTIGUA
+
+tablaEquipoPDF(
+    "CAJA DE TRANSFERENCIA ANTIGUA",
+    datosCajaAntigua,
+    false
+);
+
+
+// CAJA DE TRANSFERENCIA NUEVA
+
+tablaEquipoPDF(
+    "CAJA DE TRANSFERENCIA NUEVA",
+    datosCajaNueva,
+    false
+);
+
+
+// =========================
+// III. ANTECEDENTES
+// =========================
+
+let yAntecedentes =
+    pdf.lastAutoTable.finalY + 15;
+
+const alturaAntecedentes =
+    (textoAntecedentes.length * 6) + 25;
+
+if (
+    yAntecedentes + alturaAntecedentes > 275
+) {
+
+    pdf.addPage();
+
+    yAntecedentes = 15;
+
+}
+
+pdf.rect(
+    15,
+    yAntecedentes,
+    180,
+    alturaAntecedentes
+);
+
+pdf.setFillColor(
+    220,
+    220,
+    220
 );
 
 pdf.rect(
     15,
-    yInspeccion,
+    yAntecedentes,
     180,
-    alturaInspeccion
+    10,
+    "F"
 );
 
+pdf.line(
+    15,
+    yAntecedentes + 10,
+    195,
+    yAntecedentes + 10
+);
 
-const actividades = [];
+pdf.setFont(
+    "times",
+    "bold"
+);
 
-equipoActual.querySelectorAll(".checklist-item").forEach(item => {
+pdf.setFontSize(11);
 
-    const check = item.querySelector("input[type='checkbox']");
-    const texto = item.querySelector("label").textContent.trim();
+pdf.text(
+    "III. ANTECEDENTES",
+    20,
+    yAntecedentes + 7
+);
 
-    if(check.checked){
-        actividades.push("• " + texto);
-    }
+pdf.setFont(
+    "times",
+    "normal"
+);
 
-});
+pdf.setFontSize(10);
 
-const observaciones =
-equipoActual.querySelector(".actividades-box textarea")?.value || "";
+pdf.text(
+    textoAntecedentes,
+    22,
+    yAntecedentes + 20
+);
 
-if(observaciones.trim() !== ""){
-    actividades.push("");
-    actividades.push("Observaciones:");
-    actividades.push(observaciones);
-}
+const bloqueTrabajos =
+    equipoActual.querySelector(".actividades-box");
+
+const textoTrabajos =
+    bloqueTrabajos
+        ? bloqueTrabajos.innerText
+            .replace("IV. TRABAJOS REALIZADOS", "")
+            .trim()
+        : "";
+
+const actividades =
+    textoTrabajos
+        .split("\n")
+        .map(linea => linea.trim())
+        .filter(linea => linea !== "");
 
 pdf.addPage();
 
@@ -1629,12 +2517,15 @@ const textoActividades = [];
 
 actividades.forEach(linea => {
 
-    const partes = pdf.splitTextToSize(linea,160);
+    const partes =
+    pdf.splitTextToSize(
+        linea,
+        160
+    );
 
     textoActividades.push(...partes);
 
 });
-
 const alturaActividades =
 (textoActividades.length * 6) + 15;
 
@@ -1674,7 +2565,7 @@ pdf.setFont(
 pdf.setFontSize(11);
 
 pdf.text(
-    "3. ACTIVIDADES REALIZADAS:",
+    "IV. TRABAJOS REALIZADOS",
     20,
     yActividades + 7
 );
@@ -1745,11 +2636,10 @@ pdf.setFont(
 pdf.setFontSize(11);
 
 pdf.text(
-    "4. MEDICIONES ELÉCTRICAS:",
+    "V. MEDICIONES ELÉCTRICAS",
     20,
     yMediciones + 7
 );
-
 pdf.setFont(
     "times",
     "normal"
@@ -1758,7 +2648,7 @@ pdf.setFont(
 pdf.setFontSize(10);
 
 pdf.text(
-    "Para validar el desempeño del equipo y confirmar que los parámetros operan dentro de los valores establecidos, se registraron las mediciones eléctricas correspondientes al UPS y el banco externo de baterías.",
+    "Para validar el desempeño de los equipos y confirmar que los parámetros operan dentro de los valores establecidos, se registraron las mediciones eléctricas correspondientes al UPS y la caja de transferencia.",
     22,
     yMediciones + 20,
     { maxWidth: 160 }
@@ -1769,45 +2659,58 @@ pdf.text(
     28,
     yMediciones + 45
 );
-const filasMediciones =
+const tablasMediciones =
 equipoActual.querySelectorAll(
-".tabla-mediciones tr"
+    ".tabla-mediciones"
 );
-console.log(filasMediciones);
-console.log("Cantidad:", filasMediciones.length);
 
+const filasMedicionesUPS =
+tablasMediciones[0].querySelectorAll("tr");
+
+const filasMedicionesCaja =
+tablasMediciones[1].querySelectorAll("tr");
+console.log(filasMedicionesUPS);
+console.log("Cantidad:", filasMedicionesUPS.length);
+
+// Parámetros de tensión
+const ptRS = filasMedicionesUPS[1].querySelectorAll("input")[0].value;
+const ptST = filasMedicionesUPS[1].querySelectorAll("input")[1].value;
+const ptTR = filasMedicionesUPS[1].querySelectorAll("input")[2].value;
 // Tensión de entrada
-const teRS = filasMediciones[2].querySelectorAll("input")[0].value;
-const teST = filasMediciones[2].querySelectorAll("input")[1].value;
-const teTR = filasMediciones[2].querySelectorAll("input")[2].value;
+const teRS = filasMedicionesUPS[2].querySelectorAll("input")[0].value;
+const teST = filasMedicionesUPS[2].querySelectorAll("input")[1].value;
+const teTR = filasMedicionesUPS[2].querySelectorAll("input")[2].value;
 
 // Tensión bypass
-const tbRS = filasMediciones[3].querySelectorAll("input")[0].value;
-const tbST = filasMediciones[3].querySelectorAll("input")[1].value;
-const tbTR = filasMediciones[3].querySelectorAll("input")[2].value;
+const tbRS = filasMedicionesUPS[3].querySelectorAll("input")[0].value;
+const tbST = filasMedicionesUPS[3].querySelectorAll("input")[1].value;
+const tbTR = filasMedicionesUPS[3].querySelectorAll("input")[2].value;
 
 // Tensión salida
-const tsRS = filasMediciones[4].querySelectorAll("input")[0].value;
-const tsST = filasMediciones[4].querySelectorAll("input")[1].value;
-const tsTR = filasMediciones[4].querySelectorAll("input")[2].value;
+const tsRS = filasMedicionesUPS[4].querySelectorAll("input")[0].value;
+const tsST = filasMedicionesUPS[4].querySelectorAll("input")[1].value;
+const tsTR = filasMedicionesUPS[4].querySelectorAll("input")[2].value;
 
+// Parámetros de carga
+const pcR = filasMedicionesUPS[5].querySelectorAll("input")[0].value;
+const pcS = filasMedicionesUPS[5].querySelectorAll("input")[1].value;
+const pcT = filasMedicionesUPS[5].querySelectorAll("input")[2].value;
 // Corriente entrada
-const ceR = filasMediciones[6].querySelectorAll("input")[0].value;
-const ceS = filasMediciones[6].querySelectorAll("input")[1].value;
-const ceT = filasMediciones[6].querySelectorAll("input")[2].value;
+const ceR = filasMedicionesUPS[6].querySelectorAll("input")[0].value;
+const ceS = filasMedicionesUPS[6].querySelectorAll("input")[1].value;
+const ceT = filasMedicionesUPS[6].querySelectorAll("input")[2].value;
 
 // Corriente salida
-const csR = filasMediciones[7].querySelectorAll("input")[0].value;
-const csS = filasMediciones[7].querySelectorAll("input")[1].value;
-const csT = filasMediciones[7].querySelectorAll("input")[2].value;
+const csR = filasMedicionesUPS[7].querySelectorAll("input")[0].value;
+const csS = filasMedicionesUPS[7].querySelectorAll("input")[1].value;
+const csT = filasMedicionesUPS[7].querySelectorAll("input")[2].value;
 
 // Frecuencia
 const frecuencia =
-filasMediciones[8].querySelector("input").value;
+filasMedicionesUPS[8].querySelector("input").value;
 
-// Temperatura
 const temperatura =
-filasMediciones[9].querySelector("input").value;
+filasMedicionesUPS[9].querySelector("input").value;
 pdf.autoTable({
 
     startY: yMediciones + 55,
@@ -1832,12 +2735,21 @@ pdf.autoTable({
         fontStyle:"bold"
     },
 
-    head:[[
-        "MEDICIONES ELÉCTRICAS",
-        "R-S",
-        "S-T",
-        "T-R"
-    ]],
+ 
+    didParseCell: function(data){
+
+    if(data.row.index === 5 || data.row.index === 6){
+
+        if(data.column.index === 1){
+            data.cell.colSpan = 3;
+        }
+
+        if(data.column.index === 2 || data.column.index === 3){
+            data.cell.text = "";
+        }
+    }
+
+},
     didParseCell: function(data){
 
     if(data.row.index === 7 || data.row.index === 8){
@@ -1854,7 +2766,7 @@ pdf.autoTable({
 },
 body:[
 
-["Parámetros de tensión","R-S","S-T","T-R"],
+["Parámetros de tensión",ptRS,ptST,ptTR],
 
 ["Tensión de entrada",teRS,teST,teTR],
 
@@ -1862,7 +2774,7 @@ body:[
 
 ["Tensión de salida",tsRS,tsST,tsTR],
 
-["Parámetros de carga","R","S","T"],
+["Parámetros de carga",pcR,pcS,pcT],
 
 ["Corriente de entrada",ceR,ceS,ceT],
 
@@ -1875,94 +2787,7 @@ body:[
 ]
 
 });
-const filasBanco =
-equipoActual.querySelectorAll(".tabla-baterias tr");
 
-const modeloBat =
-filasBanco[1].querySelector("input").value;
-
-const capacidadBat =
-filasBanco[2].querySelector("input").value;
-
-const cantidadBat =
-filasBanco[3].querySelector("input").value;
-
-const configuracionBat =
-filasBanco[4].querySelector("input").value;
-
-const tensionNominalBat =
-filasBanco[5].querySelector("input").value;
-
-const tensionFlotacionBat =
-filasBanco[6].querySelector("input").value;
-
-const tensionDescargaBat =
-filasBanco[7].querySelector("input").value;
-
-const autonomiaBat =
-filasBanco[8].querySelector("input").value;
-
-const anioBat =
-filasBanco[9].querySelector("input").value;
-let yBanco =
-pdf.lastAutoTable.finalY + 15;
-
-pdf.text(
-    "• Mediciones en el BANCO DE BATERÍAS:",
-    28,
-    yBanco
-);
-
-pdf.autoTable({
-    columnStyles:{
-    0:{
-        cellWidth:55,
-        fontStyle:"bold"
-    },
-    1:{
-        cellWidth:85
-    }
-},
-    startY: yBanco + 5,
-margin:{
-    left:30,
-    right:30
-},
-
-    theme:"grid",
-    headStyles:{
-    fillColor:[220,220,220],
-    textColor:[0,0,0],
-    fontStyle:"bold"
-},
-
-    styles:{
-        fontSize:8,
-        lineColor:[0,0,0],
-        lineWidth:0.2
-    },
-
-
-head:[[
-    "BANCO DE BATERÍAS",
-    ""
-]],
-
-body:[
-
-    ["Modelo", modeloBat],
-    ["Capacidad", capacidadBat],
-    ["Cantidad", cantidadBat],
-    ["Configuración", configuracionBat],
-    ["Tensión nominal", tensionNominalBat],
-    ["Tensión de flotación", tensionFlotacionBat],
-    ["Tensión de descarga", tensionDescargaBat],
-    ["Autonomía estimada", autonomiaBat],
-    ["Año de fabricación", anioBat]
-
-],
-
-});
 const finMediciones =
 pdf.lastAutoTable.finalY + 10;
 
@@ -1972,6 +2797,220 @@ pdf.rect(
     180,
     finMediciones - yMediciones
 );
+
+
+// =========================
+// MEDICIONES CAJA DE TRANSFERENCIA
+// =========================
+
+let yMedicionesCaja =
+    pdf.lastAutoTable.finalY + 15;
+
+pdf.rect(
+    15,
+    yMedicionesCaja,
+    180,
+    125
+);
+
+pdf.setFillColor(
+    220,
+    220,
+    220
+);
+
+pdf.rect(
+    15,
+    yMedicionesCaja,
+    180,
+    10,
+    "F"
+);
+
+pdf.line(
+    15,
+    yMedicionesCaja + 10,
+    195,
+    yMedicionesCaja + 10
+);
+
+pdf.setFont(
+    "times",
+    "bold"
+);
+
+pdf.setFontSize(11);
+
+pdf.text(
+    "V. MEDICIONES ELÉCTRICAS",
+    20,
+    yMedicionesCaja + 7
+);
+
+pdf.setFont(
+    "times",
+    "normal"
+);
+
+pdf.setFontSize(10);
+
+pdf.text(
+    "• Mediciones eléctricas de la caja de transferencia:",
+    28,
+    yMedicionesCaja + 25
+);
+
+
+// =========================
+// DATOS CAJA DE TRANSFERENCIA
+// =========================
+
+const cteRS =
+filasMedicionesCaja[1].querySelectorAll("input")[0].value;
+
+const cteST =
+filasMedicionesCaja[1].querySelectorAll("input")[1].value;
+
+const cteTR =
+filasMedicionesCaja[1].querySelectorAll("input")[2].value;
+
+
+const ctsRS =
+filasMedicionesCaja[2].querySelectorAll("input")[0].value;
+
+const ctsST =
+filasMedicionesCaja[2].querySelectorAll("input")[1].value;
+
+const ctsTR =
+filasMedicionesCaja[2].querySelectorAll("input")[2].value;
+
+
+const ctbRS =
+filasMedicionesCaja[3].querySelectorAll("input")[0].value;
+
+const ctbST =
+filasMedicionesCaja[3].querySelectorAll("input")[1].value;
+
+const ctbTR =
+filasMedicionesCaja[3].querySelectorAll("input")[2].value;
+
+
+const cceR =
+filasMedicionesCaja[4].querySelectorAll("input")[0].value;
+
+const cceS =
+filasMedicionesCaja[4].querySelectorAll("input")[1].value;
+
+const cceT =
+filasMedicionesCaja[4].querySelectorAll("input")[2].value;
+
+
+const ccsR =
+filasMedicionesCaja[5].querySelectorAll("input")[0].value;
+
+const ccsS =
+filasMedicionesCaja[5].querySelectorAll("input")[1].value;
+
+const ccsT =
+filasMedicionesCaja[5].querySelectorAll("input")[2].value;
+
+
+const frecuenciaCajaInputs =
+filasMedicionesCaja[6].querySelectorAll("input");
+
+const frecuenciaCajaRS =
+frecuenciaCajaInputs[0]?.value || "";
+
+const frecuenciaCajaST =
+frecuenciaCajaInputs[1]?.value || "";
+
+const frecuenciaCajaTR =
+frecuenciaCajaInputs[2]?.value || "";
+
+
+const temperaturaCajaInputs =
+filasMedicionesCaja[7].querySelectorAll("input");
+
+const temperaturaCajaRS =
+temperaturaCajaInputs[0]?.value || "";
+
+const temperaturaCajaST =
+temperaturaCajaInputs[1]?.value || "";
+
+const temperaturaCajaTR =
+temperaturaCajaInputs[2]?.value || "";
+
+pdf.autoTable({
+
+    startY: yMedicionesCaja + 35,
+
+    margin:{
+        left:30,
+        right:30
+    },
+
+    theme:"grid",
+
+    styles:{
+        fontSize:8,
+        halign:"center",
+        lineColor:[0,0,0],
+        lineWidth:0.2
+    },
+
+    headStyles:{
+        fillColor:[220,220,220],
+        textColor:[0,0,0],
+        fontStyle:"bold"
+    },
+
+ head:[[
+    "MEDICIONES ELÉCTRICAS",
+    "R-S",
+    "S-T",
+    "T-R"
+]],
+
+didParseCell: function(data){
+
+    if(data.row.index === 5 || data.row.index === 6){
+
+        if(data.column.index === 1){
+            data.cell.colSpan = 3;
+        }
+
+        if(data.column.index === 2 || data.column.index === 3){
+            data.cell.text = "";
+        }
+    }
+
+},
+
+body:[
+
+        ["Tensión de entrada",cteRS,cteST,cteTR],
+
+        ["Tensión de salida hacia UPS",ctsRS,ctsST,ctsTR],
+
+        ["Tensión de bypass",ctbRS,ctbST,ctbTR],
+
+        ["Corriente de entrada",cceR,cceS,cceT],
+
+        ["Corriente de salida",ccsR,ccsS,ccsT],
+
+        ["Frecuencia",frecuenciaCajaRS,frecuenciaCajaST,frecuenciaCajaTR],
+
+        ["Temperatura ambiente",temperaturaCajaRS,temperaturaCajaST,temperaturaCajaTR]
+
+    ]
+
+});
+
+
+// =========================
+// CONTINUAR CON VI
+// =========================
+
 pdf.addPage();
 
 let yPruebas = 15;
@@ -2012,11 +3051,10 @@ pdf.setFont(
 pdf.setFontSize(11);
 
 pdf.text(
-    "5. PRUEBAS DE FUNCIONAMIENTO:",
+    "VI. PRUEBAS DE FUNCIONAMIENTO",
     20,
     yPruebas + 7
 );
-
 pdf.setFont(
     "times",
     "normal"
@@ -2112,13 +3150,294 @@ pdf.rect(
     finPruebas - yPruebas
 );
 
+
+// =========================
+// PRUEBAS CAJA DE TRANSFERENCIA
+// =========================
+
+let yPruebasCaja =
+    pdf.lastAutoTable.finalY + 15;
+
+pdf.rect(
+    15,
+    yPruebasCaja,
+    180,
+    120
+);
+
+pdf.setFillColor(
+    220,
+    220,
+    220
+);
+
+pdf.rect(
+    15,
+    yPruebasCaja,
+    180,
+    10,
+    "F"
+);
+
+pdf.line(
+    15,
+    yPruebasCaja + 10,
+    195,
+    yPruebasCaja + 10
+);
+
+pdf.setFont(
+    "times",
+    "bold"
+);
+
+pdf.setFontSize(11);
+
+pdf.text(
+    "VI. PRUEBAS DE FUNCIONAMIENTO",
+    20,
+    yPruebasCaja + 7
+);
+
+pdf.setFont(
+    "times",
+    "normal"
+);
+
+pdf.setFontSize(10);
+
+
+
+pdf.autoTable({
+
+    startY: yPruebasCaja + 35,
+
+    margin:{
+        left:25,
+        right:25
+    },
+
+    theme:"grid",
+
+    styles:{
+        fontSize:8,
+        lineColor:[0,0,0],
+        lineWidth:0.2
+    },
+
+    headStyles:{
+        fillColor:[220,220,220],
+        textColor:[0,0,0],
+        fontStyle:"bold"
+    },
+
+    head:[[
+        "PRUEBA EJECUTADA",
+        "RESULTADO"
+    ]],
+
+    body:[
+
+        [
+            "Comprobación de conexiones de entrada y salida",
+            resultadosPruebas[7]?.value || ""
+        ],
+
+        [
+            "Verificación de tensión en entrada y salida",
+            resultadosPruebas[8]?.value || ""
+        ],
+
+        [
+            "Prueba de transferencia manual",
+            resultadosPruebas[9]?.value || ""
+        ],
+
+        [
+            "Prueba de transferencia automática",
+            resultadosPruebas[10]?.value || ""
+        ],
+
+        [
+            "Ensayo de transferencia de carga y retorno a fuente principal",
+            resultadosPruebas[11]?.value || ""
+        ],
+
+        [
+            "Restablecimiento a condiciones normales de operación",
+            resultadosPruebas[12]?.value || ""
+        ]
+
+    ]
+
+});
+
+const finPruebasCaja =
+pdf.lastAutoTable.finalY + 10;
+
+pdf.rect(
+    15,
+    yPruebasCaja,
+    180,
+    finPruebasCaja - yPruebasCaja
+);
+function leerImagen(file){
+
+    return new Promise((resolve)=>{
+
+        const reader =
+        new FileReader();
+
+        reader.onload = function(e){
+
+            resolve(
+                e.target.result
+            );
+
+        };
+
+        reader.readAsDataURL(file);
+
+    });
+
+}
+pdf.addPage();
+
+pdf.setFont(
+    "times",
+    "bold"
+);
+
+pdf.setFontSize(11);
+
+pdf.text(
+    "VII. REGISTRO VISUAL",
+    15,
+    15
+);
+const contenedoresFotos =
+    equipoActual.querySelectorAll(
+        ".reporteFotografico .foto-item"
+    );
+
+let contadorFotos = 0;
+
+const posiciones = [
+    {x:15,  y:25},
+    {x:110, y:25},
+    {x:15,  y:140},
+    {x:110, y:140}
+];
+
+for(let i = 0; i < contenedoresFotos.length; i++){
+
+    const contenedorFoto =
+        contenedoresFotos[i];
+
+const tituloInput =
+    contenedorFoto.querySelector(
+        ".titulo-foto-extra"
+    );
+
+let titulo = "";
+
+if(tituloInput){
+
+    const numero =
+        contenedorFoto.querySelector(
+            ".foto-titulo"
+        )?.childNodes[0]?.textContent.trim() || "";
+
+    titulo =
+        `${numero} ${tituloInput.value.toUpperCase()}`.trim();
+
+}else{
+
+    titulo =
+        contenedorFoto.querySelector(
+            ".foto-titulo"
+        )?.textContent.trim() || "";
+
+}
+
+    const archivos =
+        contenedorFoto.querySelectorAll(
+            'input[type="file"]'
+        );
+
+    for(let j = 0; j < archivos.length; j++){
+
+        if(!archivos[j].files[0]){
+            continue;
+        }
+
+        const imagenBase64 =
+            await leerImagen(
+                archivos[j].files[0]
+            );
+
+        const posicion =
+            posiciones[
+                contadorFotos % 4
+            ];
+
+        pdf.rect(
+            posicion.x,
+            posicion.y,
+            80,
+            70
+        );
+
+        pdf.addImage(
+            imagenBase64,
+            posicion.x + 2,
+            posicion.y + 2,
+            76,
+            55
+        );
+
+        pdf.setFontSize(8);
+
+        pdf.text(
+            titulo,
+            posicion.x,
+            posicion.y + 63,
+            {
+                maxWidth:80
+            }
+        );
+
+        contadorFotos++;
+
+        if(
+            contadorFotos % 4 === 0
+        ){
+
+            pdf.addPage();
+
+            pdf.setFont(
+                "times",
+                "bold"
+            );
+
+            pdf.setFontSize(11);
+
+            pdf.text(
+                "VII. REGISTRO VISUAL",
+                15,
+                15
+            );
+        }
+    }
+}
 const conclusiones =
 equipoActual.querySelector(
 ".campo-conclusiones textarea"
 )?.value || "";
 
-let yConclusiones =
-finPruebas + 10;
+pdf.addPage();
+
+let yConclusiones = 15;
 
 const textoConclusiones =
 pdf.splitTextToSize(
@@ -2160,7 +3479,7 @@ pdf.setFont(
 pdf.setFontSize(11);
 
 pdf.text(
-    "6. CONCLUSIONES:",
+    "VIII. RESULTADOS DE LA INSTALACIÓN",
     20,
     yConclusiones + 7
 );
@@ -2183,6 +3502,89 @@ pdf.rect(
     180,
     alturaConclusiones
 );
+
+
+// =========================
+// IX. OBSERVACIÓN
+// =========================
+
+pdf.addPage();
+
+const observacion =
+equipoActual.querySelectorAll(
+    ".campo-conclusiones textarea"
+)[1]?.value || "";
+
+let yObservacion = 15;
+
+const textoObservacion =
+pdf.splitTextToSize(
+    observacion,
+    160
+);
+
+const alturaObservacion =
+(textoObservacion.length * 5) + 25;
+
+pdf.setFillColor(
+    220,
+    220,
+    220
+);
+
+pdf.rect(
+    15,
+    yObservacion,
+    180,
+    10,
+    "F"
+);
+
+pdf.line(
+    15,
+    yObservacion + 10,
+    195,
+    yObservacion + 10
+);
+
+pdf.setFont(
+    "times",
+    "bold"
+);
+
+pdf.setFontSize(11);
+
+pdf.text(
+    "IX. OBSERVACIÓN",
+    20,
+    yObservacion + 7
+);
+
+pdf.setFont(
+    "times",
+    "normal"
+);
+
+pdf.setFontSize(10);
+
+pdf.text(
+    textoObservacion,
+    22,
+    yObservacion + 20
+);
+
+pdf.rect(
+    15,
+    yObservacion,
+    180,
+    alturaObservacion
+);
+
+
+// =========================
+// X. RECOMENDACIONES
+// =========================
+
 pdf.addPage();
 
 const recomendaciones =
@@ -2230,7 +3632,7 @@ pdf.setFont(
 pdf.setFontSize(11);
 
 pdf.text(
-    "7. RECOMENDACIONES:",
+    "X. RECOMENDACIONES",
     20,
     yRecomendaciones + 7
 );
@@ -2285,176 +3687,8 @@ pdf.setFont(
 
 pdf.setFontSize(11);
 
-pdf.text(
-    "8. ESTADO FINAL DEL EQUIPO:",
-    15,
-    yEstado
-);
 
-pdf.autoTable({
 
-    startY: yEstado + 5,
-
-    theme:"grid",
-
-    styles:{
-        fontSize:9,
-        halign:"center",
-        valign:"middle",
-        lineColor:[0,0,0],
-        lineWidth:0.2
-    },
-    columnStyles:{
-    0:{cellWidth:42},
-    1:{cellWidth:78},
-    2:{cellWidth:60}
-},
-
-    body:[
-
-        [
-            estadoSeleccionado === "Operativo"
-          ? "OPERATIVO [X]"
-            : "OPERATIVO [ ]",  
-
-            estadoSeleccionado === "Operativo con observación"
-            ? "OPERATIVO CON OBSERVACIÓN [X]"
-: "OPERATIVO CON OBSERVACIÓN [ ]",
-
-            estadoSeleccionado === "Inoperativo"
-            ? "INOPERATIVO [X]"
-: "INOPERATIVO [ ]",
-        ],
-
-        [
-            "PROFESIONAL\nRESPONSABLE:",
-
-            responsableNombre +
-            "\n" +
-            responsableCorreo,
-
-            responsableCargo
-        ]
-
-    ]
-
-});
-function leerImagen(file){
-
-    return new Promise((resolve)=>{
-
-        const reader =
-        new FileReader();
-
-        reader.onload = function(e){
-
-            resolve(
-                e.target.result
-            );
-
-        };
-
-        reader.readAsDataURL(file);
-
-    });
-
-}
-pdf.addPage();
-
-pdf.setFont(
-    "times",
-    "bold"
-);
-
-pdf.setFontSize(11);
-
-pdf.text(
-    "9. REPORTE FOTOGRÁFICO:",
-    15,
-    15
-);
-const fotos =
-equipoActual.querySelectorAll(
-'.reporteFotografico input[type="file"]'
-);
-let x = 15;
-let yFoto = 25;
-
-let contadorFotos = 0;
-
-const posiciones = [
-
-    {x:15,  y:25},
-    {x:110, y:25},
-
-    {x:15,  y:140},
-    {x:110, y:140}
-
-];
-
-for(let i = 0; i < fotos.length; i++){
-
-    if(!fotos[i].files[0]) continue;
-
-    const imagenBase64 =
-    await leerImagen(
-        fotos[i].files[0]
-    );
-
-    const posicion =
-    posiciones[
-        contadorFotos % 4
-    ];
-
-    pdf.rect(
-        posicion.x,
-        posicion.y,
-        80,
-        70
-    );
-
-  pdf.addImage(
-    imagenBase64,
-    posicion.x + 2,
-    posicion.y + 2,
-    76,
-    55
-);
-
-    pdf.setFontSize(8);
-
-    pdf.text(
-        descripcionesFotos[i],
-        posicion.x,
-        posicion.y + 63,
-        { maxWidth:80 }
-    );
-
-    contadorFotos++;
-
-    if(
-        contadorFotos % 4 === 0 &&
-        i < fotos.length - 1
-    ){
-
-        pdf.addPage();
-
-        pdf.setFont(
-            "times",
-            "bold"
-        );
-
-        pdf.setFontSize(11);
-
-        pdf.text(
-            "9. REPORTE FOTOGRÁFICO:",
-            15,
-            15
-        );
-
-    }
-
-}
   
  pdf.save(
     codigoEquipo + ".pdf"
@@ -2469,6 +3703,5 @@ localStorage.setItem(
 
 actualizarCodigo();
 
-    };
+    }
 
-}
